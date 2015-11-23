@@ -1,0 +1,89 @@
+/*
+ * Tooltip script 
+ * powered by jQuery (http://www.jquery.com)
+ * 
+ * written by Alen Grakalic (http://cssglobe.com)
+ * 
+ * for more info visit http://cssglobe.com/post/1695/easiest-tooltip-and-image-preview-using-jquery
+ *
+ */
+ 
+
+
+this.pop = function(){	
+	/* CONFIG */		
+		xOffset = -5;
+		yOffset = -140;		
+		// these 2 variable determine popup's distance from the cursor
+		// you might want to adjust to get the right result		
+	/* END CONFIG */		
+	$("a.pop").hover(function(e){											  
+		this.t = this.title;
+		this.title = "";									  
+		$("body").append("<p id='pop'>"+ this.t +"</p>");
+		$("#pop")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px")
+			.fadeIn("fast");		
+    },
+	
+	function(){
+		this.title = this.t;		
+		$("#pop").remove();
+    });	
+	$("a.pop").mousemove(function(e){
+		$("#pop")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px");
+		
+			
+	});		
+};
+
+
+
+// starting the script on page load//
+$(document).ready(function(e){
+	pop();
+});
+
+
+
+this.tooltip = function(){	
+	/* CONFIG */		
+		xOffset = -5;
+		yOffset = -140;		
+		// these 2 variable determine popup's distance from the cursor
+		// you might want to adjust to get the right result		
+	/* END CONFIG */		
+	$("a.tooltip").hover(function(e1){											  
+		this.t = this.title;
+		this.title = "";									  
+		$("body").append("<p id='tooltip'>"+ this.t +"</p>");
+		$("#tooltip")
+			.css("top",(e1.pageY - xOffset) + "px")
+			.css("left",(e1.pageX + yOffset) + "px")
+			.fadeIn("fast");		
+    },
+	
+	function(){
+		this.title = this.t;		
+		$("#tooltip").remove();
+    });	
+	$("a.tooltip").mousemove(function(e1){
+		$("#tooltip")
+			.css("top",(e1.pageY - xOffset) + "px")
+			.css("left",(e1.pageX + yOffset) + "px");
+		
+			
+	});		
+};
+
+
+
+// starting the script on page load//
+$(document).bind("pagebeforeload",function(){
+	tooltip();
+});
+
+

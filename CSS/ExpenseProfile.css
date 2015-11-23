@@ -1,0 +1,48 @@
+
+
+/*Sayali*/
+	
+ 
+
+.substyle:link,.substyle:visited
+{
+    display: block;
+    width: 140px;
+    //height:50px;
+    border: 1px solid #253737;
+    background-color:#335599;// #233b6b;
+	 -moz-border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	color:white;
+	text-decoration:none;
+	text-align:center;
+	font-weight:bold;
+	text-transform:uppercase;
+	padding:5px;
+	Box-Shadow:0px 1px 1px;
+	border-radius:6px;
+	 color: #e1e1e1;
+	   text-shadow: #333333 0 1px 0;
+	   opacity:0.9;
+	   font-family: 'Source Sans Pro', sans-serif;
+}
+.substyle:hover,.substyle:active
+{
+	background-color:#335599;
+	color:white;
+	Box-Shadow:5px 5px 5px  gray;
+	border-radius:6px;
+	
+}
+
+	
+	
+	
+	iframe
+	{
+		width:260%;
+		padding:10px;
+		margin:40px;
+		height:100%;
+		border-radius: 5px;
+	}
