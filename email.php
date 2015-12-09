@@ -24,13 +24,13 @@ border-style: solid;
 <body>
 
  
-<!--<table class="table" bgcolor="" width="100%" border="1" style="text-align:center;border-collapse: collapse; color:black;text-align:center;border-style: solid; "  >-->
-<center>
+<!--<table class="table" bgcolor="" width="100%" border="0" style="text-align:center;border-collapse: collapse; color:black;text-align:center;border-style: solid; " >-->
+
                <div class="">
                 <div class="">
-<img href="#" alt="logo" src="http://xpensy.net/version2/images/xlogo7.jpg" height="130px" width="130px">
-<!--<h4 style="color:orange">E<h3 style="color:blue" >xpense</h3> </h4><h4 style="color:orange">R</h4><h3 style="color:blue" >eports</h3>...<h4 style="color:orange">S</h4><h3 style="color:blue" >implified</h3>-->
-<h3>Expense Reports...Simplified</h3>
+<!--<center><img href="#" alt="logo" src="http://xpensy.com/images/xlogo7.jpg" height="130px" width="130px">
+<h4 style="color:orange">E<h3 style="color:blue" >xpense</h3> </h4><h4 style="color:orange">R</h4><h3 style="color:blue" >eports</h3>...<h4 style="color:orange">S</h4><h3 style="color:blue" >implified</h3>
+<center><h3>Expense Reports...Simplified</h3></center>-->
                 </div><!-- /.box-header -->
                <!-- /.box-header -->
 			   
@@ -46,10 +46,13 @@ border-style: solid;
 //<tr style='text-align:center' width='80%'><td ></td></tr>
 //</table>
 //</div>-->
-<div class="table-responsive">
-<table class="tabel"  border="1" width="80%" cellspacing="0" cellpadding="5" style="border-collapse: collapse; color:black;text-align:center;border-style: solid;" >
 
-<tr bgcolor="#3c8dbc" style="text-align:center" width="80%" height="30px"><td style="color:white" colspan="4" rowspan=""><b>Expense Report Details</b></td></tr>
+<div class="table-responsive">
+<table class="tabel"  border="" width="850px" cellspacing="0" cellpadding="5" style="border-collapse: collapse; color:black;text-align:center;border-style: solid;" >
+<tr  bgcolor="#28abcc" style = "border:0; border-style:solid none; ">
+<td  colspan="4"><img href="#" alt="logo" src="http://xpensy.com/img/darkblack.png" ></td>
+
+<!--<tr bgcolor="#3c8dbc" style="text-align:center" width="80%" height="30px"><td style="color:white" colspan="4" rowspan=""><b>Expense Report Details</b></td></tr>-->
  <tr bgcolor="#F1F1F1" border="1"   style="color:black;text-align:center;">
 <th style="text-align:center" width="13%"  >Category</th>
  <th style="text-align:center" width="40%"  >Description</th>
@@ -75,7 +78,7 @@ while ($row1 = $stmt1->fetch())
 	<td border="1" >
 		<?php echo $row1[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row1[3]; ?></label>
 
@@ -113,8 +116,8 @@ if($result1 != '')
 		<table width=100% >
 			<tr>
 				
-				<td align=right  width=55%  ><strong>Transportation Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "₹ ".$result1; ?></strong></td>
+				<td align=right  width=55% >Transportation Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "₹ ".$result1; ?></b></td>
                                 
 			 </tr>
 		</table>
@@ -142,7 +145,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -175,8 +178,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Meals Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Meals Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "₹ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -208,7 +211,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -241,8 +244,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Lodging Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Lodging Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "₹ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -274,7 +277,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -307,8 +310,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Other Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Other Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "₹ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -343,7 +346,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[1]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[4]; ?></label>
 
@@ -373,10 +376,10 @@ if($rowcount != '')
 {
 ?>
 <tr valign="center">
-	<td bgcolor="#8bbdda" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:30px;" >
+	<td bgcolor="#28abcc" colspan="8" align="right"   border-bottom-style:single; height:30px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>₹ Grand Total:</td>
+				<td align=right  width=55%  ><strong>₹ Grand Total</td>
 				<td  width=10% style="text-align:right;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
@@ -412,7 +415,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[1]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[4]; ?></label>
 
@@ -506,7 +509,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -539,8 +542,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Transportation Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Transportation Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "$ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -575,7 +578,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -608,8 +611,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Meals Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Meals Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "$ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -660,7 +663,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -693,8 +696,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Lodging Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Lodging Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "$ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -731,7 +734,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[0]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[3]; ?></label>
 
@@ -764,8 +767,8 @@ if($rowcount != '')
 	<td bgcolor="#F1F1F1" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:15px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>Others Total:</td>
-				<td  width=10% style="text-align:right;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
+				<td align=right  width=55%  >Others Total</td>
+				<td  width=10% style="text-align:right;"><?php echo "$ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
 	</td>
@@ -804,7 +807,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[1]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[4]; ?></label>
 
@@ -834,10 +837,10 @@ if($rowcount != '')
 {
 ?>
 <tr valign="center">
-	<td bgcolor="#8bbdda" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:30px;" >
+	<td bgcolor="#28abcc" colspan="8" align="right"   border-bottom-style:single; height:30px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>$ Grand Total:</td>
+				<td align=right  width=55%  ><strong>$ Grand Total</td>
 				<td  width=10% style="text-align:right;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>
@@ -873,7 +876,7 @@ while ($row = $stmt->fetch())
 	<td>
 		<?php echo $row[1]; ?>
 	</td>
-	<td style="text-align:left" >
+	<td style="text-align:center" >
  <label  maxlength="100" style="resize:vertical; ">
 		<?php echo $row[4]; ?></label>
 
@@ -903,10 +906,10 @@ if($rowcount != '')
 {
 ?>
 <tr valign="center">
-	<td bgcolor="#8bbdda" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:25px;" >
+	<td bgcolor="#28abcc" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:single; height:25px;" >
 		<table width=100% border=0>
 			<tr>
-				<td align=right  width=55%  ><strong>$ Grand Total:</td>
+				<td align=right  width=55%  ><strong>$ Grand Total</td>
 				<td  width=10% style="text-align:right;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
 			 </tr>
 		</table>

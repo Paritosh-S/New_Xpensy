@@ -8,14 +8,15 @@ $mail->IsSMTP();
 $mail->SMTPDebug = 1;
 $mail->CharSet="UTF-8";
 $mail->SMTPSecure = 'ssl';
-$mail->Host = 'secure174.servconfig.com'; //'gator4198.hostgator.com'; //'smtp.mail.yahoo.com';
-$mail->Port =	465; //465;  //587;
-$mail->Username ="no_reply@xpensy.net";		//$_POST['usr']; //'gnavjyot@yahoo.com';
-$mail->Password = 'admin@xpensy'; //$_POST['pwd'];
+
+$mail->Host = 'cp-30.webhostbox.net';                    //'cp-30.webhostbox.net';//'secure174.servconfig.com'; //'gator4198.hostgator.com'; 
+$mail->Port = 465;	        //30;//465; //465; //465;  //587;
+$mail->Username ="no_reply@xpensy.com";		//$_POST['usr']; //'gnavjyot@yahoo.com';
+$mail->Password = 'vulcaninfotech'; //$_POST['pwd'];
 $mail->SMTPAuth = true;
 
-$mail->From = "no_reply@xpensy.net"; //"no_reply@vulcaninfotech.com"; //'gnavjyot@yahoo.com';
-$mail->Sender = "no_reply@xpensy.net"; //"no_reply@vulcaninfotech.com";
+$mail->From = "no_reply@xpensy.com"; //"no_reply@vulcaninfotech.com"; //'gnavjyot@yahoo.com';
+$mail->Sender = "no_reply@xpensy.com"; //"no_reply@vulcaninfotech.com";
 
 $ccc = explode(",", $_POST['MailCC']);
 foreach($ccc as $ccMail)
@@ -28,7 +29,7 @@ if(isset($ccMail) && $ccMail != '')
 }
 $mail->FromName = 'Xpensy Report';
 $pname = substr($_SESSION['pname'],8);
-$mail->SetFrom("no_reply@xpensy.net",$pname); //Name of user
+$mail->SetFrom("no_reply@xpensy.com",$pname); //Name of user
 
 
 $mail->AddReplyTo($_SESSION['login'],$pname); //('gnavjyot@yahoo.com', 'Information');
@@ -40,10 +41,10 @@ ob_start();
 include('email.php');
 $mail->Body = ob_get_contents();
 ob_end_clean();
-$mail->Body .= 
-"
-<br><br><br>
-You have received this email from <b>".$pname."</b>. Please reply to the sender of this email at ".$_SESSION['login']."<br><br>Thank you.";
+//$mail->Body .= 
+//"
+//<br><br><br>
+//You have received this email from <b>".$pname."</b>. Please reply to the sender of this email at ".$_SESSION['login']."<br><br>Thank you.";
 
 //code starts for multiple recipients 
 

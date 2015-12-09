@@ -63,10 +63,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main Header -->
       <header class="main-header">
 
-       <!-- Logo -->
-        <a class="logo img-responsive" href="http://xpensy.com/UserProfile.php" >
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+           <img class=" navbar-left" height="50"  style="margin-left:20px; "  src="images/Logo3.png" alt="">
         </a>
 
         <!-- Header Navbar -->
@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             
             <!-- Optionally, you can add icons to the links -->
-			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
+			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
                         <li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>                        
                         <li class="active"><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Reports</span></a></li>
 			<li><a href="UpdateProfile.php"><i class="fa fa-cogs"></i> <span>User Profile</span></a></li>
@@ -275,9 +275,7 @@ if($count <= 0)
 {
 ?>
 	<tr style="width:100%px; text-align:center;">
-	
-<td colspan=12 >No records found...</td>
-<td  ></td><td > </td>
+	<td colspan=4 >No records found...</td>
 	</tr>
 <?php
 }
@@ -289,7 +287,7 @@ while($row=$stmt->fetch())
 	<tr>
 		<!--<td style="width:10%; text-align:center;"><?php $type = $row[3]; if($type == 'Rpt'){echo "<img src='images/Rpt.png' style='width:35px; height:40px;'>";} else {echo "<img src='images/Rct.png' style='width:35px; height:40px;'>";}?></td>-->
 		<td style="width:30%;  text-align:center;""><?php echo $row[4];?></td>
-		<td style="width:15%;  text-align:center;"><?php echo substr($row[1],0,10);?></td>
+		<td style="width:15%;  text-align:center;"><?php echo $row[1];?></td>
 		<td style=" width:10%; text-align:center; decoration:none;">
 			<!--<a href="PDFDOCS/<?php echo $row[0].".pdf";?>" target="_blank">
 				<img title="Click to Download" src="images/pdf.png" width="35px" height="40px"></a>-->
@@ -340,8 +338,10 @@ $dbh->Connection = Null;
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>        </div>
+          Anything you want
+        </div>
         <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 <a href="#">Xpensy</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -462,12 +462,6 @@ $dbh->Connection = Null;
         });
       });
     </script>
-<script>
-$( document ).ready(function() {
-    setTimeout(function(){ 
-alert("Due to inactivity you have been logged out");
-location.href="EndSession.php" }, 3600000);
-  });
-</script>
+
   </body>
 </html>

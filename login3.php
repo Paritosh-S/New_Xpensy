@@ -213,7 +213,7 @@ function onSignIn(googleUser)
 	
 	<script>
 	$( document ).ready(function() {
-		$('#logoutBtn').hide();
+		$('#logoutBtn').show();
 		$('#userDetails').hide();
 	});
 
@@ -246,7 +246,7 @@ function onSignIn(googleUser)
 							{
 								if (xhr.readyState == 4 && xhr.status == 200) 
 								{
-										window.location = "UserProfile.php";				
+										//window.location = "UserProfile.php";				
 								}
 							}
 						xhr.open("GET", "google-api.php?access_google_id="+id+"&access_google_name="+name+"&access_google_email="+email, true);
@@ -422,7 +422,7 @@ function onSignIn(googleUser)
                             <div class="form-bottom">
 			                    <form role="form" action="UserLogin.php" method="post" class="registration-form">
 			                    	<div class="form-group">
-									<?php echo $Lmessage; ?>
+									<?php echo $Lmessage; ?><br>
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                     <div class="icon-addon addon-md">
@@ -445,16 +445,15 @@ function onSignIn(googleUser)
 			<center>
 			                        <button type="submit" class="btn">Login </button>
 									</center>
-			                    </form>
-<center><p><a href="loginforgot.php">Forgot Password?</a></p>
+			                    </form><br>
 <center><p>Not a member yet ? <a href="signup.php">Sign up here</a></p>
 
 <div class="container-fluid">	
 <div class="row">Or Sign In with</div>							
 <div class="row">
 
-<div class=" g-signin2 col-md-4 " data-onsuccess="onSignIn"></div>
-<div class="col-md-offset-4 col-md-4"><a onclick="logIn()"><img src="img/fb.png" ></a></div>
+<div class="g-signin2 col-md-4 " data-onsuccess="SignOut"></div>
+<div class="col-md-offset-4 col-md-4"><a onclick="logOut()"><img src="img/fb.png" ></a></div>
 <div>
 </div>
 
