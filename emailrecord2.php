@@ -28,7 +28,7 @@ border-style: solid;
 <center>
                <div class="">
                 <div class="">
-<img href="#" alt="logo" src="http://xpensy.net/version2/images/xlogo7.jpg" height="130px" width="130px">
+<img href="#" alt="logo" src="http://xpensy.net/images/xlogo7.jpg" height="130px" width="130px">
 <!--<h4 style="color:orange">E<h3 style="color:blue" >xpense</h3> </h4><h4 style="color:orange">R</h4><h3 style="color:blue" >eports</h3>...<h4 style="color:orange">S</h4><h3 style="color:blue" >implified</h3>-->
 <h3>Expense Reports...Simplified</h3>
                 </div><!-- /.box-header -->

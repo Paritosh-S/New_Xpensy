@@ -38,7 +38,7 @@ else
 			$MobileNo = $_POST['mobileno'];
 			$EmailID2 = $_POST['emailid'];
 	
-			if (strlen($_POST["mobileno"])  >= 10)
+			if (isset($_POST['Uname']))
 			{
 				try
             {
@@ -64,6 +64,10 @@ else
 					{
 						//$_SESSION['Umessage'] = $flag;
 						$message = "<img src='images/Tick.png' width=25px height=18px valign=bottom> Updated successfully";
+echo "<script>
+	alert('level updated successfully');
+	
+	</script>";	
 						$_SESSION['pname'] = 'Welcome! '.$nm;
 						//Header('Location: '.$_SERVER['PHP_SELF']);
 						
@@ -80,7 +84,7 @@ else
 				//echo $ex->getMessage();
 			}
 			}
-			else
+			if (isset($_POST["mobileno"])  >= 10)
 			{
                $error_arr['mobileno'] = 'Mobile No must be of 10 digits';
             }			
@@ -110,17 +114,30 @@ else
 				{
 					//$_SESSION['Umessage'] = $flag;
 					$message = "<img src='images/Tick.png' width=25px height=18px valign=bottom> Updated successfully";
+echo "<script>
+	alert('Password Updated Successfully');
+	
+	</script>";	
+
 				}
 				else if($flag == '0')
 				{
 					//$_SESSION['Umessage'] = $flag;
 					$message = "<img src='images/x.png' width=25px height=20px valign=bottom> Please input correct details!";
+echo "<script>
+	alert('Please input correct details!');
+	
+	</script>";	
 				}
 			}
 			catch(PDOException $ex)
 			{
 				echo $ex->getMessage();
 				$_SESSION['Umessage'] = "Not Updated error occured";
+echo "<script>
+	alert('Not Updated error occured');
+	
+	</script>";
 				//echo "not Updated error occured";
 				$dbh->connection = NULL;
 			}
@@ -128,6 +145,10 @@ else
 		else
 		{
 			$message = "<img src='images/x.png' width=25px height=20px valign=bottom> Password string mismatched!";
+echo "<script>
+	alert('Password string mismatched!');
+	
+	</script>";
 		}
 					//echo "Updated
 		
@@ -166,6 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 function autoRefresh()
 {
 	window.location = window.location.href;
+
 }
 </script-->
   <head>
@@ -187,6 +209,10 @@ function autoRefresh()
           apply the skin class to the body tag so the changes take effect.
     -->
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+<style>
+
+
+</style>
 <script>
 		$(document).ready(function()
 		{
@@ -233,11 +259,14 @@ catch(PDOException $ex)
       <!-- Main Header -->
       <header class="main-header">
 
-        <!-- Logo -->
-        <a href="UserProfile.php" class="logo">
+       <!-- Logo -->
+        <a class="logo" href="http://xpensy.com/UserProfile.php" >
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left" height="50"  style="margin-left:20px; "  src="images/Logo3.png" alt="">
+          <img class=" logo-lg navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+          <img class=" logo-mini navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+
         </a>
+ 
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -311,9 +340,9 @@ catch(PDOException $ex)
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
-			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
+			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
                       
-			<li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Reports</span></a></li>
+			<li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
                         <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Reports</span></a></li>
                         <li class="active"><a href="UpdateProfile.php" ><i class="fa fa-cogs"></i> <span>User Profile</span> </a></li>
                      
@@ -330,39 +359,29 @@ catch(PDOException $ex)
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-		<div style="width:20%;float:middle">                              <!--------------------------------------/./CHANGE-->
-		<div class="col-sm-9">                                            <!------------------------------------------//CHANGE-->
-          <h1>
-        
-           
-          </h1>
-         <br>
-		 </DIV>
-		 </DIV>
-        </section>
 
-        <!-- Main content -->
-		
- <section class="content">
-  
-          <div class="row">
-		 
-            <!-- left column -->
-            
-			 <div style="width: 50%; margin: 50px auto;">              <!---------------------------------------//CHANGE-->
-			
-              <!-- general form elements -->
-              <div class="col-md-9">
-              <div class="nav-tabs-custom">
-                <ul class="nav nav-pills">
-                  <li class="active"><a href="#activity" data-toggle="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UpdateProfile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                  <li><a href="#timeline" data-toggle="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Update Password &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                 
-                </ul>
-                <!-- form start -->	
-				<div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                <form id="user_details" method="POST" action="" class="form" >
+
+
+<!---------------------------------------------------------------------accordion------------------------------------------------------->
+<div class="col-md-6 col-md-offset-3">
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Profile Setting</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="box-group" id="accordion">
+                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                    <div class="panel box box-primary">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Edit Profile
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="box-body">
+                          <form id="user_details" method="POST" action="" class="form" >
                   <div class="box-body">
 				  
 				   <div class="form-group">
@@ -393,23 +412,40 @@ catch(PDOException $ex)
                       
                       <input type="text" class='form-control' name='designation' class='name'  placeholder='Designation' value='<?php echo $desig; ?>'>
                     </div-->
-                    <div class="checkbox">
-                      
-                    </div>
-                  </div><!-- /.box-body -->
 
-                  <div class="box-footer">
+                         <div class="form-group">
                     <input type="submit" onclick="autoRefresh()" name="UpdateProf" value="Update" class="btn btn-primary" > 
                   </div>
-				  <?php echo $message; ?>
+                   
+                  </div><!-- /.box-body -->
+
+                 
+				  
                 </form>
 
-              </div><!-- /.box -->
-			  
-<div class="tab-pane" id="timeline">
-<form method="POST" action="" name="frmChange" class="form"  onSubmit="return validatePassword()">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel box box-success">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Change Password
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="box-body">
+
+
+
+
+
+
+
+                         <form method="POST" action="" name="frmChange" class="form"  onSubmit="return validatePassword()">
                 
-                  <div class="box-body">
+                  
 				  
 				                    <input name="currentPassword" type="password" class="form-control" placeholder="Old Password" required>
 							<span id="currentPassword" class="required"></span><BR>
@@ -421,17 +457,159 @@ catch(PDOException $ex)
                   </div><!-- /.box-body -->
 
                                    <div class="box-footer">
-                    <input type="submit" onclick="autoRefresh()" name="UpdatePass" value="Update" class="btn btn-primary" > 
+                    <input type="submit" onclick="autoRefresh()" name="UpdatePass" value="Update" class="btn btn-success" > 
 					
-                  </div>
+                 
+
                 </form>
-              </div>
-            </div><!--/.col (left) -->
-          
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <!--<div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Deactivate Account
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="box-body">
+
+<div class="form-group">
+                    <input type="submit" onclick="autoRefresh()" name="" value="Delete Account" class="btn btn-Danger" > 
+                  </div>-->
+ 
+
+                  <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Deactivate Account
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="box-body">
+
+<div class="form-group">
+                   <!-- <a  class="btn btn-Danger type="submit" href="delete_acc.php?UserName=<?php echo $_SESSION['login']?>" onclick="return confirm('Are you sure, delete this records?')"><p class="btn btn-block btn-danger">Deactivate Account</p></a>
+                    <input type="submit" onclick="autoRefresh()" name="" value="Delete Account" class="btn btn-Danger" >--> 
+                 
+
+<form name="delrpt" method="post" action="">
+					 <input type="submit" class="btn btn-danger " name="btndel" value="Deactivate Account" onclick="return confirm('Are you sure you want to delete all records?');">
+					 </form>
+<?php
+include('dbcon.php');
+
+$email = $_SESSION['login'];
+
+if(isset($_REQUEST['btndel']) || isset($_REQUEST['key']))// delete all entries of user manually
+{
+	if(isset($_REQUEST['btndel']) && $_REQUEST['btndel']!=null)
+	{
+		$R = 0;
+	}
+	else if(isset($_REQUEST['key']) || $_REQUEST['key']!=null)
+	{
+		$R = $_REQUEST['f'];
+	}
+try
+{
+        echo $email;
+        $ran = rand();
+        $stmt5 = "UPDATE tbluserdetails SET ActCode ='$ran' WHERE UserName ='$email' ";      
+        $stmt6 = $dbh->prepare("$stmt5");
+        $stmt6 -> execute();
+
+	$stmt3 = $dbh->prepare("CALL sp_DelReports(?,?)");
+	$stmt3->execute(array($UserID,$R));
+	while($row = $stmt3->fetch())
+	{
+		$folder = "PDFDOCS/";
+		unlink($folder.$row[0].".pdf");
+	}
+	$dbh->connection = null;
+	include('dbcon.php');
+	$stmt4 = $dbh->prepare("CALL sp_DelSingleReport(?,?)");
+	$stmt4->execute(array($UserID,$R));
+         $dbh->connection = null;
+include('dbcon.php');
+       $A = $_REQUEST['Delete'];
+	$stmt = $dbh->prepare("CALL sp_DelAttachment(?,?)");
+	$stmt->execute(array($User,$R));
+	while($row = $stmt->fetch())
+	{
+		$folder = "uploads/";
+		unlink($folder.$row[0]);
+	}
+	$stmt = $dbh->prepare("CALL sp_DelRow(?,?)");
+	$stmt->execute(array($User,$R));
+	$dbh->connection = null;
+	$_POST = null;
+	$_REQUEST = null;
+
+
+
+
+if(session_destroy()) // Destroying All Sessions
+{
+echo " <script> alert('Account deactivated successfully!! but you can log in again with your Google & Facebook Account !!');
+window.location.href='http://xpensy.com/';
+</script>";
+
+}
+
+
+}
+catch(Exception $e)
+{
+	$e->getMessage();
+}
+
+
+}
+?>
+
+ </div>
+ 
+
+                         
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-            </div><!--/.col (right) -->
-          </div>   <!-- /.row -->
+            </div><!-- /.col -->
+<!------------------------------------accordion closed------------------------------>
+
+
+
+
+
+
+
+
+
+
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -439,10 +617,9 @@ catch(PDOException $ex)
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Anything you want
+  ©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -523,4 +700,11 @@ catch(PDOException $ex)
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+<script>
+$( document ).ready(function() {
+    setTimeout(function(){ 
+alert("Due to inactivity you have been logged out");
+location.href="EndSession.php" }, 3600000);
+  });
+</script>
 </html>

@@ -9,6 +9,8 @@ error_reporting(0);
 		{
 			$User=$_SESSION['login'];
 			$UserID = $_SESSION['userid'];
+$_SESSION['loggedin_time'] = time();  
+
 		}
 		else
 		{
@@ -20,6 +22,17 @@ error_reporting(0);
 		session_destroy();
 		header("Location: EndSession.php");
 	}
+
+
+
+include("functions.php");
+if(isset($_SESSION["login"])) {
+	if(isLoginSessionExpired()) {
+		header("Location:EndSession.php?session_expired=1");
+	}
+}
+
+
 ?>
 <html>
   <head>
@@ -98,9 +111,10 @@ color:white;
       <header class="main-header">
 
         <!-- Logo -->
-        <a class="logo">
+       
+        <a class="logo responsive" href="http://xpensy.com/UserProfile.php" >
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left" height="50"  style="margin-left:20px; "  src="images/Logo3.png" alt="">
+          <img class=" navbar-left responsive"  height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
         </a>
 
         <!-- Header Navbar -->
@@ -182,9 +196,9 @@ color:white;
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
-                       <!-- <li><a href="#" data-toggle="modal" data-target="#myModal_addReceipt"><i class="fa fa-file-text-o"></i> <span>Generate PDF Receipts</span></a></li>-->
-                        <li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Reports</span></a></li>
+			<li class="active"><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
+                       <!-- <li><a href="#" data-toggle="modal" data-target="#myModal_addReceipt"><i class="fa fa-file-text-o"></i> <span>Generate PDF Receipt</span></a></li>-->
+                        <li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
                     
                         <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Reports</span></a></li>
                         <li><a href="UpdateProfile.php"><i class="fa fa-cogs"></i> <span>User Profile</span> </a></li>
@@ -208,10 +222,10 @@ color:white;
               <div class="nav-tabs-custom">
                 <ul class="nav nav-pills">
                   
-                  <li class="active"><a href="#transport" data-toggle="tab">&nbsp;Transportation&nbsp;</a></li>
-                  <li><a href="#meal" data-toggle="tab">&nbsp;&nbsp;Meals&nbsp;&nbsp;</a></li>
-                  <li><a href="#hotel" data-toggle="tab">&nbsp;&nbsp;Lodging&nbsp;&nbsp;</a></li>
-		  <li><a href="#other" data-toggle="tab">&nbsp;&nbsp;Other&nbsp;&nbsp;</a></li>
+                  <li class="active"><a href="#transport" data-toggle="tab"><b>Transportation</b></a></li>
+                  <li><a href="#meal" data-toggle="tab">&nbsp;&nbsp;<b>Meals</b>&nbsp;&nbsp;</a></li>
+                  <li><a href="#hotel" data-toggle="tab">&nbsp;<b>Lodging</b>&nbsp;</a></li>
+		  <li><a href="#other" data-toggle="tab">&nbsp;<b>Other</b>&nbsp;</a></li>
                 </ul>
                 <div class="tab-content">
 					<br>
@@ -219,7 +233,7 @@ color:white;
                     <!-- The transport -->
 					<form class="form-horizontal" name="transport" action="" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
-                        <label for="inputName" class="col-sm-3 control-label">Catagory</label>
+                        <label for="inputName" class="col-sm-3 control-label">Category</label>
                         <div class="col-sm-9">
                          
 						  <select name="ExCategory" class="form-control">
@@ -227,14 +241,18 @@ color:white;
                         <option value="Railway">Railway</option>
                         <option value="Bus">Bus</option>
                         <option value="Taxi">Taxi</option>
-                        <option value="Fairy">Fairy</option>
+                        <option value="Ferry">Ferry</option>
                       </select>
                         </div>
                       </div>
 					  <div class="form-group">
                         <label for="inputExperience" class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
-                          <textarea name="Descr" class="form-control" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></textarea>
+
+                          <input name="Descr" type="text"  maxlength="100" class="form-control" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></input >
+
+				 
+
                         </div>
                       </div>
                       <div class="form-group">
@@ -270,8 +288,8 @@ color:white;
 					  <br>
 					  <div class="form-group">
 					  
-                        <div class="col-sm-offset-4 col-sm-15">
-                          <input type="submit" name="Add" class="btn btn-success">
+                        <div class="col-sm-offset-3 col-sm-10">
+                          <input type="submit" name="Add" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						  <button type="reset" name="" class="btn btn-danger">Reset</button>
                         </div>
 
@@ -288,7 +306,8 @@ color:white;
                         <label class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
 						<input type="hidden" name="ExCategory" value="Meal">
-                          <textarea class="form-control" name="Descr" placeholder="Description" maxlength="100" style="resize:vertical;"></textarea>
+                          <input class="form-control" name="Descr" placeholder="Description" maxlength="100" style="resize:vertical; maxlength="100""></input >
+
                         </div>
                       </div>
 					  
@@ -324,8 +343,8 @@ color:white;
 					  <br>
 					  <div class="form-group">
 					  
-                        <div class="col-sm-offset-4 col-sm-15">
-                          <input type="submit" name="Add" class="btn btn-success">
+                        <div class="col-sm-offset-3 col-sm-10">
+                          <input type="submit" name="Add" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						  <button type="reset" name="" class="btn btn-danger">Reset</button>
                         </div>
 
@@ -339,14 +358,14 @@ color:white;
                         <label for="inputExperience" class="col-sm-3 control-label">Name</label>
                         <div class="col-sm-9">
 						<input type="hidden" name="ExCategory" value="Hotel">	
-                          <textarea class="form-control" name="Descr" id="inputExperience" placeholder="Name of the hotel" style="resize:vertical;" maxlength="50"></textarea>
+                          <input class="form-control" name="Descr" id="inputExperience" placeholder="Name of the hotel" style="resize:vertical;" maxlength="100"></input >
                         </div>
                       </div>
                      
 					  <div class="form-group">
                         <label for="inputExperience" class="col-sm-3 control-label">Location</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control" name="Descr" id="inputExperience" placeholder="Location of the hotel" style="resize:vertical;"  maxlength="50"></textarea>
+                          <input class="form-control" name="Descr" id="inputExperience" placeholder="Location of the hotel" style="resize:vertical;"  maxlength="100"></input >
                         </div>
                       </div>
                       <div class="form-group">
@@ -381,8 +400,8 @@ color:white;
 					  <br>
 					  <div class="form-group">
 					  
-                        <div class="col-sm-offset-4 col-sm-15">
-                          <input type="submit" name="Add" class="btn btn-success">
+                          <div class="col-sm-offset-3 col-sm-10">
+                          <input type="submit" name="Add" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						  <button type="reset" name="" class="btn btn-danger">Reset</button>
                         </div>
 
@@ -392,7 +411,7 @@ color:white;
 				  <div class="tab-pane" id="other">
                    <form class="form-horizontal" name="other" action="" method="POST" enctype="multipart/form-data" >
                       <div class="form-group">
-                        <label for="inputName" class="col-sm-3 control-label">Catagory</label>
+                        <label for="inputName" class="col-sm-3 control-label">Category</label>
                         <div class="col-sm-9">
                          
 						  <select name="ExCategory" class="form-control">
@@ -408,7 +427,7 @@ color:white;
 					  <div class="form-group">
                         <label for="inputExperience" class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control"  name="Descr" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></textarea>
+                          <input class="form-control"  name="Descr" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></input >
                         </div>
                       </div>
                       <div class="form-group">
@@ -444,8 +463,8 @@ color:white;
 					  <br>
 					  <div class="form-group">
 					  
-                        <div class="col-sm-offset-4 col-sm-15">
-                          <input type="submit" name="Add" class="btn btn-success">
+                         <div class="col-sm-offset-3 col-sm-10">
+                          <input type="submit" name="Add" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						  <button type="reset" name="" class="btn btn-danger">Reset</button>
                         </div>
 
@@ -455,18 +474,6 @@ color:white;
                 </div><!-- /.tab-content -->
               </div><!-- /.nav-tabs-custom -->
             </div><!-- /.col -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 			 <div class="col-md-7">
               <div class="box">
@@ -512,12 +519,14 @@ color:white;
 	      <div class="col-xs-12 table-responsive">
                   <table class="table table-custom table-responsive table-hover" style="overflow-y: auto;font-family:Segoe UI; font-size:12;">
                     <tr>
-                      <th>Catagory</th>
+                      <center>
+                      <th>Category</th>
                       <th>Description</th>
-                      <th><a style=" text-decoration:none;"  href="UserProfile.php?&C=ClaimDate&ord=1" data-toggle="tooltip" data-placement="right" title="Sort expenses by date">Date</a></th>
-<th><a style=" text-decoration:none;" data-toggle="tooltip" data-placement="left" title="Sort expenses by Amount" href="UserProfile.php?&C=ClaimAmt&ord=1">&nbsp&nbsp&nbspAmount&nbsp;&nbsp&nbsp</a></th>
-                      <th class="glyphicon glyphicon-paperclip"></th>
+                      <th><a  style="color:#000000;" href="UserProfile.php?&C=ClaimDate&ord=1" data-toggle="tooltip" data-placement="right" title="Sort expenses by date">Date</a></th>
+<th><a  style="color:#000000;"  data-toggle="tooltip" data-placement="left" title="Sort expenses by Amount" href="UserProfile.php?&C=ClaimAmt&ord=1">&nbsp&nbsp&nbspAmount&nbsp;&nbsp&nbsp</a></th>
+                      <th>Receipt</th>
                       <th>Action</th>
+                       </center>
                     </tr>
                     
 					<?php
@@ -827,7 +836,9 @@ while ($row1 = $stmt1->fetch())
 												</td>
 												 
 												<td><div class="form-group">
-													<textarea class="form-control" maxlength="100" style="resize:vertical; font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row1[3]; ?></textarea>
+     <input type="text" style="resize:vertical;font-size:12;" maxlength="100" rows=1 cols="25" name="ECClass"  class="form-control" value="<?php echo $row1[3]; ?>">				 
+
+													<!--<textarea class="form-control" maxlength="100" style="resize:vertical; font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row1[3]; ?></textarea>-->
 													</div>
 												</td>
 												
@@ -947,9 +958,13 @@ while ($row = $stmt->fetch())
 												<td title="Sort by Category">
 													<a href=UserProfile.php?&C=<?php echo $row[0];?>><strong><?php echo $row[0]; ?></strong></a>
 												</td>
-												<td><div class="form-group">
-													<textarea class="form-control" maxlength="100" style="resize:vertical;font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row[3]; ?></textarea>
-												</div>
+												<td>
+<!--<textarea class="form-control" maxlength="100" style="resize:vertical;font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row[3]; ?>
+</textarea>-->
+<div class="form-group">
+<input type="text" style="resize:vertical;font-size:12;" maxlength="100" rows=1 cols="25" name="ECClass"  class="form-control" value="<?php echo $row[3]; ?>">				 
+
+</div>
 												</td>
 												<td align=center>
 													<input type="text" size="9" name="ECDate" value="<?php echo $row[1]; ?>">
@@ -1060,11 +1075,10 @@ catch(PDOException $ex)
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Anything you want
-        </div>
+        ©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>        </div>
         <!-- Default to the left -->
 		
-        <strong>Copyright &copy; 2016 <a href="index.php">Xpensy</a>.</strong> All rights reserved.
+
       </footer>
 <!-- Control Sidebar -->
     
@@ -1145,7 +1159,7 @@ function CreateReport(text, btnId)
 						setTimeout(function () {
 							$('#show_status1').show();
 							$('#show_status1').fadeOut('slow');
-						}, 5000);
+						}, 10000);
 					});
 				} 
 				else 
@@ -1156,7 +1170,7 @@ function CreateReport(text, btnId)
 						setTimeout(function () {
 							$('#show_status').show();
 							$('#show_status').fadeOut('slow');
-						}, 5000);
+						}, 10000);
 					});
 				}
 			}
@@ -1189,6 +1203,15 @@ function CreateReport(text, btnId)
 	}
 }
 </script>
-   
-  </body>
+
+
+ <script>
+$( document ).ready(function() {
+    setTimeout(function(){ 
+alert("Due to inactivity you have been logged out");
+location.href="EndSession.php" }, 3600000);
+  });
+</script>
+
+ </body>
 </html>

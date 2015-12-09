@@ -280,6 +280,7 @@ function onSignIn(googleUser)
 	  
 	</script>
 
+
 <style>
 .center-block {
     float: none;
@@ -366,15 +367,46 @@ function onSignIn(googleUser)
     color: #2580db;
 }
 </style>
+
+<script>
+function GetPassword(text)
+{
+document.getElementById('login-username').value = "";
+	if (text != "")
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () 
+		{
+			if (xhr.readyState == 4 && xhr.status == 200) 
+			{    
+					document.getElementById('show_status').innerHTML = xhr.responseText;
+					setTimeout(function () {
+						document.getElementById('show_status').style.display = 'block';
+						setTimeout(function () {
+							$('#show_status').show();
+							$('#show_status').fadeOut('slow');
+						}, 10000);
+					});
+			}
+		}
+		xhr.open("POST", "Frm_Password_Recovery.php", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+		xhr.send("forgot=ar34ks"+ "&UName=" + text);
+	}
+	else
+	{
+
+		document.getElementById("show_status").innerHTML = "Enter valid email address";
+		document.getElementById("show_status").style.display = 'block';
+	}
+}
+</script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
-       
-       
     </head>
 
     <body>
@@ -422,39 +454,27 @@ function onSignIn(googleUser)
                             <div class="form-bottom">
 			                    <form role="form" action="UserLogin.php" method="post" class="registration-form">
 			                    	<div class="form-group">
-									<?php echo $Lmessage; ?>
+<center><p><a>Enter Email address</a></p>
+									<?php echo $Lmessage; ?><br>
                 <div class="input-group input-group-md">
+
                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                     <div class="icon-addon addon-md">
-                        <input type="email" placeholder="Email" class="form-control input-lg" name="UName">
-                       
+                      <input name="UName" class="form-control" id="login-username" type="text" placeholder="Enter you Email address" onfocus="this.value=''">
                     </div>
                     
                 </div>
             </div>
-			                        <div class="form-group">
-                <div class="input-group input-group-md">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <div class="icon-addon addon-md">
-                        <input type="password" placeholder="Password" class="form-control input-lg" name="UPassword">
-                       
-                    </div>
-                    
+  <div class="form-group">
+                <div class="input-group input-group-md">   
                 </div>
             </div>
 			<center>
-			                        <button type="submit" class="btn">Login </button>
+			                        
+									<button type="button" class="btn" name="forgot" style="color:white;" onClick="GetPassword(UName.value);">Generate Link</button>
 									</center>
-			                    </form>
-<center><p><a href="loginforgot.php">Forgot Password?</a></p>
-<center><p>Not a member yet ? <a href="signup.php">Sign up here</a></p>
-
-<div class="container-fluid">	
-<div class="row">Or Sign In with</div>							
-<div class="row">
-
-<div class=" g-signin2 col-md-4 " data-onsuccess="onSignIn"></div>
-<div class="col-md-offset-4 col-md-4"><a onclick="logIn()"><img src="img/fb.png" ></a></div>
+			                    </form><br>
+<center><p><a href="login.php">Back To Login</a></p>
 <div>
 </div>
 

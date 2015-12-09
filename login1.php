@@ -1,5 +1,10 @@
 <?php
+
+
 session_start();
+
+error_reporting(0);
+
 if (isset($_COOKIE['Username']) && isset($_COOKIE['Password'])) 
 {
 	$Email = $_COOKIE['Username'];
@@ -12,32 +17,20 @@ else
 	$Pass = '';
 }
 if(isset($_SESSION['message']))
-{	
-	if($_SESSION['message']=='M')
+{
+	if($_SESSION['message']=='L')
 	{
-		$Smessage="<img src='images/x.png' width=25px height=18px valign=bottom> Password Mismatch";
+		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Invalid Username or Password";
 		session_destroy();
 	}
-	else if($_SESSION['message']=='S')
+        else if($_SESSION['message']=='A')
 	{
-		$Smessage="<img src='images/x.png' width=25px height=18px valign=bottom> Sign Up failed! Try again";
+		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Inactive account";
 		session_destroy();
 	}
-	else if($_SESSION['message']=='I')
+	else if($_SESSION['message']=='P')
 	{
-		$Smessage="<img src='images/x.png' width=25px height=18px valign=bottom> Email Id Invalid";
-		session_destroy();
-	}
-	else if($_SESSION['message']=='E')
-	{
-		$Smessage="<img src='images/x.png' width=25px height=18px valign=bottom> You are already registered";
-		session_destroy();
-	}
-
-	else if($_SESSION['message']=='C')
-	{
-		$msg="<span style='color:green'><img src='images/x.png' width=25px height=18px valign=bottom> Incorrect Captcha!</span>";	
-		$Smessage='';
+		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Trial period expired";
 		session_destroy();
 	}
 	else
@@ -45,25 +38,23 @@ if(isset($_SESSION['message']))
 		Windows.Location.reset();
 	}
 }
-else if(isset($_SESSION['login']))
+if(isset($_SESSION['login']) && isset($_SESSION['userid']) && isset($_SESSION['pname']))
 {
 	header("Location: UserProfile.php");
 	exit;
 }
-else
-{
-	$Smessage='';
-	$msg='';
-	session_destroy();
-}
 
 ?>
 
-
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>XPENSY | SIGNUP</title>
+        <title>XPENSY | LOGIN</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -73,15 +64,16 @@ else
 
         <link rel="stylesheet" href="CSS/css/leaflet.css" />
 		<!--[if lte IE 8]>
-		    <link rel="stylesheet" href="css/leaflet.ie.css" />
+		     <link rel="stylesheet" href="CSS/css/leaflet.ie.css" />
 		<![endif]-->
 		<link rel="stylesheet" href="CSS/main.css">
 
+
         <script src="js/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
-    <body>
+    <body height="auto">
 	<?php 
-error_reporting(0);
+error_reporting(E_ERROR);
 if(isset($_REQUEST['Submit'])) 
 {
 	$message = $_SESSION['Umessage'];
@@ -188,6 +180,7 @@ if(isset($_REQUEST['Submit']))
 	}
 }
 ?>
+
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -197,7 +190,7 @@ if(isset($_REQUEST['Submit']))
 		
       <div class="mainmenu-wrapper">
 	        <div class="container">
-	        	  <nav id="mainmenu" class="mainmenu">
+	        	 <nav id="mainmenu" class="mainmenu">
                                        <div class="navbar-header" style="margin-left:-5%;">
                                          <a href="index.php"><img src="image/Logo3.png" width="180px"></a>
                                        </div>
@@ -218,8 +211,8 @@ if(isset($_REQUEST['Submit']))
 							<a href="contact_us.php">Contact us</a>
 						</li>
 						
-						<li ><a href="login.php">LogIn</a></li>
-<li class="active"><a href="signup.php">Sign Up</a></li>
+						<li class="active"><a href="login.php">LogIn</a></li>
+<li><a href="signup.php">Sign Up</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -230,7 +223,7 @@ if(isset($_REQUEST['Submit']))
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1 style="margin-top:32px;">Register</h1>
+						<h1 style="margin-top:32px;">Employee Login</h1>
 					</div>
 				</div>
 			</div>
@@ -241,35 +234,35 @@ if(isset($_REQUEST['Submit']))
 				<div class="row">
 					<div class="col-sm-5">
 						<div class="basic-login">
-							<form role="form" action="UserSignup.php" method="POST">
+							<form role="form" role="form" action="UserLogin.php" method="POST">
 								<div class="form-group">
-                                                                <?php echo $Smessage; ?><br>
-                                                                <input name="Name" required type="text" Placeholder="Name" id="name" title="Name" class="form-control" maxlength="30">
+									<?php echo $Lmessage; ?><br>
+		        				 	
+									<input name="UName" class="form-control" id="login-username" type="email" placeholder="Enter UserName" onfocus="this.value=''">
 								</div>
 								<div class="form-group">
-                                                                  <input  name="UserId" type="email" Placeholder="Email ID" required="required" id="UserId" class="form-control" maxlength="40"></div>
+		        				 	
+									<input class="form-control" id="login-password" type="password" name="UPassword" placeholder="Enter Password" onfocus="this.value=''">
+								</div>
 								<div class="form-group">
-				                                  <input required name="UserPassword" id="UserPassword" Placeholder="Password" type="password" title="Password" class="form-control"> </div>
-								
-								<div class="form-group">
-				<input required name="RePassword" id="RePassword" Placeholder="Re-enter Password" type="Password" title="Confirm Password" class="form-control">
-				</div>
-
-				<?php include 'captCode.php'; ?>
-				
+									
+									<a href="ForgotPassword.php" class="forgot-password">Forgot password?</a>
+									<input type="submit" class="btn pull-right" name="submit" style="color:white;">
+									<div class="clearfix"></div>
+								</div>
 							</form>
 						</div>
 					</div>
 					<div class="col-sm-7 social-login">
-					      <div class="not-member">
-						<p>Back to <a href="login.php">Login</a></p>
-					      </div>
+						<div class="not-member">
+							<p>Not a member? <a href="signup.php">Register here</a></p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-	   <?php include 'footer.php'?>
+	   <div style="margin-top:200px;"><?php include 'footer.php'?></div>
 		
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

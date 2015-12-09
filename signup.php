@@ -58,29 +58,7 @@ else
 }
 
 ?>
-
-
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>XPENSY | SIGNUP</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-
-        <link rel="stylesheet" href="CSS/css/bootstrap.min.css">
-        <link rel="stylesheet" href="CSS/css/icomoon-social.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
-
-        <link rel="stylesheet" href="CSS/css/leaflet.css" />
-		<!--[if lte IE 8]>
-		    <link rel="stylesheet" href="css/leaflet.ie.css" />
-		<![endif]-->
-		<link rel="stylesheet" href="CSS/main.css">
-
-        <script src="js/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    </head>
-    <body>
-	<?php 
+<?php 
 error_reporting(0);
 if(isset($_REQUEST['Submit'])) 
 {
@@ -188,99 +166,377 @@ if(isset($_REQUEST['Submit']))
 	}
 }
 ?>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-        
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Navigation & Logo-->
-		
-      <div class="mainmenu-wrapper">
-	        <div class="container">
-	        	  <nav id="mainmenu" class="mainmenu">
-                                       <div class="navbar-header" style="margin-left:-5%;">
-                                         <a href="index.php"><img src="image/Logo3.png" width="180px"></a>
-                                       </div>
-					<!--ul class="navbar-left">
-						<li class="logo-wrapper"><a href="index.php"><img src="image/Logo3.png" width="180px"></a></li>
-					</ul-->
-                                        <ul class="nav navbar-nav navbar-right">	
-                                               <li  >
-							<a href="index.php">Home</a>
-						</li>
-						<li >
-							<a href="about_new.php">About us</a>
-						</li>
-						<li >
-							<a href="help.php">Help</a>
-						</li>
-						<li>
-							<a href="contact_us.php">Contact us</a>
-						</li>
-						
-						<li ><a href="login.php">LogIn</a></li>
-<li class="active"><a href="signup.php">Sign Up</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Xpensy | Login</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+	<script src="https://connect.facebook.net/en_US/all.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+
+
+
+<meta name="google-signin-client_id" content="918871235883-7pfhcqbgckd4lhci4qd5co8tcemoadu1.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript">
+function onSignIn(googleUser) 
+{
+  var profile = googleUser.getBasicProfile();
+  /*console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());*/
+  var id=profile.getId();
+  var name=profile.getName();
+  var email=profile.getEmail();
+  
+  //sending data for xpensy user_error
+  var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () 
+		{
+			if (xhr.readyState == 4 && xhr.status == 200) 
+			{
+					window.location = "UserProfile.php";				
+			}
+		}
+	xhr.open("GET", "google-api.php?access_google_id="+id+"&access_google_name="+name+"&access_google_email="+email, true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	xhr.send();
+}
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+</script>
+
 	
-        <!-- Page Title -->
-		<div class="section section-breadcrumbs">
+	<script>
+	$( document ).ready(function() {
+		$('#logoutBtn').hide();
+		$('#userDetails').hide();
+	});
+
+	function fbAsyncInit() {
+		FB.init({
+			appId      : '1723169717913358',
+			status     : true, // check login status
+			cookie     : true, // enable cookies to allow the server to access the session
+			xfbml      : true  // parse XFBML
+		});
+	}
+	function logIn() {
+	  	FB.login(
+	        function(response) {
+				if (response.status== 'connected') {
+					FB.api('/me?fields=id,name,email', function(response) {
+				    	//console.log(response);
+				      	/*console.log('Good to see you, ' + response.email + '.');
+				      	$('#loginBtn').hide();
+				      	$('#logoutBtn').show();
+					$('#userDetails').show();
+					$('#userInfo').html(response.email + '<br>' + response.location.name); */
+					var id=response.id;
+					  var name=response.name;
+					  var email=response.email;
+					  
+					  //sending data for xpensy user_error
+					  var xhr = new XMLHttpRequest();
+							xhr.onreadystatechange = function () 
+							{
+								if (xhr.readyState == 4 && xhr.status == 200) 
+								{
+										window.location = "UserProfile.php";				
+								}
+							}
+						xhr.open("GET", "google-api.php?access_google_id="+id+"&access_google_name="+name+"&access_google_email="+email, true);
+						xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+						xhr.send();
+				    });
+
+				    FB.api("/me/picture?width=200&redirect=0&type=normal&height=200", function (response) {
+				      	if (response && !response.error) {
+				        	/* handle the result */
+				        	console.log('PIC ::', response);
+				        	$('#userPic').attr('src', response.data.url);
+				      	}
+				    });
+				}
+			}
+		);
+	}
+
+	function logOut() {
+		FB.logout(function(response) {
+			console.log('logout :: ', response);
+			//Removing access token form localStorage.
+			$('#loginBtn').show();
+			$('#logoutBtn').hide();
+			$('#userDetails').hide();
+		});
+	}
+
+	fbAsyncInit();
+	  
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+</style>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+       
+       
+    </head>
+
+    <body>
+
+		<!-- Top menu -->
+		<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1 style="margin-top:32px;">Register</h1>
-					</div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<img src="img/lightwhite.png">
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="index.php"><strong>Home</strong></a> 
+						</li>
+					</ul>
 				</div>
 			</div>
-		</div>
+		</nav>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    
+                    <div class="row">
+					<div class="col-sm-4">
+					</div>
+                        <div class="col-sm-4 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<img src="img/lightwhite.png">                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-lock"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="UserSignup.php" method="POST" class="registration-form">
+			                    	<div class="form-group">
+									<?php echo $Smessage; echo "<br>"; ?>
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <div class="icon-addon addon-md">
+                        <input type="text" placeholder="Name" class="form-control input-lg" name="Name">
+                       
+                    </div>
+                    
+                </div>
+            </div>
+			<div class="form-group">
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    <div class="icon-addon addon-md">
+                        <input type="email" placeholder="Email" class="form-control input-lg" name="UserId">
+                       
+                    </div>
+                    
+                </div>
+            </div>
+			                        <div class="form-group">
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <div class="icon-addon addon-md">
+                        <input type="password" placeholder="Password" class="form-control input-lg" name="UserPassword">
+                       
+                    </div>
+                    
+                </div>
+            </div>
+			<div class="form-group">
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <div class="icon-addon addon-md">
+                        <input type="password" placeholder="Re-Password" class="form-control input-lg" name="RePassword" id="RePassword">
+                       
+                    </div>
+                    
+                </div>
+            </div>
+            <br>
+<?php include 'captCode.php'; ?>
+			<!--center>
+			                        <button type="submit" class="btn">Sign up </button>
+									</center-->
+			                    </form><br>
+								<center><p>Already member ? <a href="login.php">Sign In here</a></p></center>
+<!--<div class="container-fluid">	
+<center><div class="row">Or Sign In with</div>	</center>						
+<div class="row">
+
+<div class="g-signin2 col-md-4 " data-onsuccess="onSignIn"></div>
+<div class="col-md-offset-4 col-md-4"><a onclick="logIn()"><img src="img/fb.png" ></a></div>
+<div>
+</div>-->
+
+		                    
+
+
+
+
+</div>
+							
+							<!--<a href="#"><img src="img/fb.png" height="25px" width="25px"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img src="img/twitter.png" height="25px" width="25px"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img src="img/g+.png" height="25px" width="25px"></a>-->
+
+
+
+                        </div>
+                    	
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
         
-        <div class="section" style="margin-top:32px;">
-	    	<div class="container">
-				<div class="row">
-					<div class="col-sm-5">
-						<div class="basic-login">
-							<form role="form" action="UserSignup.php" method="POST">
-								<div class="form-group">
-                                                                <?php echo $Smessage; ?><br>
-                                                                <input name="Name" required type="text" Placeholder="Name" id="name" title="Name" class="form-control" maxlength="30">
-								</div>
-								<div class="form-group">
-                                                                  <input  name="UserId" type="email" Placeholder="Email ID" required="required" id="UserId" class="form-control" maxlength="40"></div>
-								<div class="form-group">
-				                                  <input required name="UserPassword" id="UserPassword" Placeholder="Password" type="password" title="Password" class="form-control"> </div>
-								
-								<div class="form-group">
-				<input required name="RePassword" id="RePassword" Placeholder="Re-enter Password" type="Password" title="Confirm Password" class="form-control">
-				</div>
-
-				<?php include 'captCode.php'; ?>
-				
-							</form>
-						</div>
-					</div>
-					<div class="col-sm-7 social-login">
-					      <div class="not-member">
-						<p>Back to <a href="login.php">Login</a></p>
-					      </div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	   <?php include 'footer.php'?>
-		
-        <!-- Javascripts -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="js/js/bootstrap.min.js"></script>
-        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-        <script src="js/js/jquery.fitvids.js"></script>
-        <script src="js/js/jquery.sequence-min.js"></script>
-        <script src="js/js/jquery.bxslider.js"></script>
-        <script src="jsjs/main-menu.js"></script>
-        <script src="js/js/template.js"></script>
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
 
     </body>
+
 </html>

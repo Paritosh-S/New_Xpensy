@@ -1,159 +1,51 @@
 <?php
-
-
 session_start();
+//error_reporting(0);
 
-error_reporting(0);
-
-if (isset($_COOKIE['Username']) && isset($_COOKIE['Password'])) 
-{
-	$Email = $_COOKIE['Username'];
-	$Pass = $_COOKIE['Password'];
-	$Lmessage = "Welcome back!";
-}
-else
-{
-	$Email = '';
-	$Pass = '';
-}
-if(isset($_SESSION['message']))
-{
-	if($_SESSION['message']=='L')
-	{
-		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Invalid Username or Password";
-		session_destroy();
-	}
-        else if($_SESSION['message']=='A')
-	{
-		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Inactive account";
-		session_destroy();
-	}
-	else if($_SESSION['message']=='P')
-	{
-		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Trial period expired";
-		session_destroy();
-	}
-	else
-	{
-		Windows.Location.reset();
-	}
-}
 if(isset($_SESSION['login']) && isset($_SESSION['userid']) && isset($_SESSION['pname']))
 {
 	header("Location: UserProfile.php");
 	exit;
 }
-
-?>
-<?php 
-error_reporting(E_ERROR);
-if(isset($_REQUEST['Submit'])) 
+else if(isset($_REQUEST['AT']) && isset($_REQUEST['identity']) && isset($_REQUEST['tracker']))
 {
-	$message = $_SESSION['Umessage'];
-	unset($_SESSION['Umessage']);
+	$Uid = $_REQUEST['identity'];
+	$_SESSION['Uid'] = $Uid;
+	$OldPass = $_REQUEST['tracker'];
+	$_SESSION['OldPass'] = $_REQUEST['tracker'];
+	unset($_REQUEST['identity']);
+	unset($_REQUEST['AT']);
+	unset($_REQUEST['tracker']);
+}
 
-	// define variables and set to empty values
-	$nameErr = $emailErr = $lnameErr=$contactErr=  "";
-	$fname = $emailid  = $title = $contact="";
-
-	if (empty($_POST["fname"])) 
+if(isset($_POST['NewPassword']) && isset($_POST['RePassword']) && isset($_POST['reset']))
+{
+	$NewPass = $_POST['NewPassword'];
+	$RePass = $_POST['RePassword'];
+	$UId = $_SESSION['Uid'];
+	$OldPassword = $_SESSION['OldPass'];
+	if($NewPass == $RePass)
 	{
-		$nameErr = "First Name is required";
-    } 
-	else 
-	{
-		$fname = $_POST["fname"];
-		// check if name only contains letters 
-		if (!preg_match('/^[a-z]*$/i',$fname)) 
-		{													
-			$nameErr = "Only letters allowed"; 
-		}
-	}
-   
-	if (empty($_POST["lname"])) 
-	{
-		$lnameErr = " Last Name is required";
-	}
-	else 
-	{
-		$lname = $_POST["lname"];
-		// check if name only contains letters 
-		if (!preg_match('/^[a-z]*$/i',$lname)) 
-		{
-			$lnameErr = "Only letters allowed"; 
-		}
-   }
-   
-	if (empty($_POST["emailid"])) 
-	{
-		$emailErr = "EmailID is required";
-	} 
-	else 
-	{     
-		$emailid = $_POST["emailid"];
-		// check if e-mail address is well-formed
-		if (!filter_var($emailid, FILTER_VALIDATE_EMAIL)) 
-		{
-			$emailErr = "Invalid email format"; 
-		}
-	}
-	if (empty($_POST["contact"])) 
-	{
-		$contactErr = " Contact no is required";
-	}
-	else 
-	{
-     $contact = $_POST["contact"];
-     // check if contact only contains number
-			if (!preg_match( '/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/',$contact)) 
-			{
-				$contactErr = "Only 10 digits number"; 
-			}
-	}
-   
-	if (empty($_POST["title"]))
-	{
-		$title = "";
-	} 
-	else 
-	{
-    		$title = $_POST["title"];
-	}
-  	try
-	{
+		$setPass = md5(md5($RePass));
 		include('dbcon.php');
-		 $fname = $_POST['fname'];
-		 $lname = $_POST['lname'];
-		 $cmpny_name = $_POST['cmpny_name'];
-		 $emailid = $_POST['emailid'];
-		 $contact = $_POST['contact'];
-		 $subject = $_POST['title'];
-		$stmt = $dbh->prepare("CALL sp_UserVisit(?,?,?,?,?,?)");
-		$stmt->execute(array($fname,$lname,$cmpny_name,$emailid,$contact,$subject));				
-		$row = $stmt->fetch();		
-		$Flag = $row[0];
-		$dbh->connection = NULL;
-		if($Flag == '1')
+		$stmt = $dbh->prepare("CALL sp_ResetPassword(?,?,?)");
+		$stmt->execute(array($UId,$OldPassword,$setPass));
+		$result = $stmt->fetchColumn();
+		if($result == '1')
 		{
-			//$_SESSION['Umessage'] = $flag;
-			$_SESSION['Umessage'] = "<img src='images/tick.png' width=25px height=18px valign=bottom> Thank you";
+			$Lmessage="<img src='images/Tick.png' width=25px height=20px valign=bottom> Password changed.Please <a href='http://xpensy.com/login.php' style='font-weight:bold; font-family:calibri; color:blue;'>LOGIN</a>";
 		}
 		else
 		{
-			//$_SESSION['Umessage'] = $flag;
-			$_SESSION['Umessage'] = "<img src='images/x.png' width=25px height=20px valign=bottom> Not updated, try again";
+			$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Reset link expired";
 		}
 	}
-	catch(PDOException $ex)
+	else
 	{
-		echo $ex->getMessage();
-		//$_SESSION['message'] = "Not Updated error occured";
-		//echo "not Updated error occured";
-		//$dbh->connection = NULL;
+		$Lmessage="<img src='images/x.png' width=25px height=20px valign=bottom> Password strings mismatch";
 	}
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,7 +54,7 @@ if(isset($_REQUEST['Submit']))
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Xpensy | Login</title>
+        <title>XPENSY | ResetPassword</title>
 
         <!-- CSS -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
@@ -279,7 +171,23 @@ function onSignIn(googleUser)
 	fbAsyncInit();
 	  
 	</script>
-
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".username").focus(function() {
+		$(".user-icon").CSS("left","-48px");
+	});
+	$(".username").blur(function() {
+		$(".user-icon").CSS("left","0px");
+	});
+	
+	$(".password").focus(function() {
+		$(".pass-icon").CSS("left","-48px");
+	});
+	$(".password").blur(function() {
+		$(".pass-icon").CSS("left","0px");
+	});
+});
+</script>
 <style>
 .center-block {
     float: none;
@@ -420,41 +328,32 @@ function onSignIn(googleUser)
                         		</div>
                             </div>
                             <div class="form-bottom">
+			   <div class="form-bottom">
 			                    <form role="form" action="UserLogin.php" method="post" class="registration-form">
 			                    	<div class="form-group">
-									<?php echo $Lmessage; ?>
+									<?php echo $Lmessage; ?><br>
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <div class="icon-addon addon-md">
-                        <input type="email" placeholder="Email" class="form-control input-lg" name="UName">
-                       
-                    </div>
-                    
+                    <input required name="NewPassword" type="password" class="input username" placeholder="Enter new password" onfocus="this.value=''"  style="width:100%;"/>
                 </div>
             </div>
 			                        <div class="form-group">
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <div class="icon-addon addon-md">
-                        <input type="password" placeholder="Password" class="form-control input-lg" name="UPassword">
-                       
-                    </div>
+                    <input type="password" required class="input password" Placeholder="Confirm password" onfocus="this.value=''" name="RePassword" style="width:100%;"/>
                     
                 </div>
             </div>
 			<center>
-			                        <button type="submit" class="btn">Login </button>
+			                         <input type="submit" class="btn btn-primary" name="reset" value="Reset Password" class="button" style="color:white;">
 									</center>
-			                    </form>
-<center><p><a href="loginforgot.php">Forgot Password?</a></p>
-<center><p>Not a member yet ? <a href="signup.php">Sign up here</a></p>
+			                    </form><br>
 
 <div class="container-fluid">	
-<div class="row">Or Sign In with</div>							
+						
 <div class="row">
 
-<div class=" g-signin2 col-md-4 " data-onsuccess="onSignIn"></div>
-<div class="col-md-offset-4 col-md-4"><a onclick="logIn()"><img src="img/fb.png" ></a></div>
+
 <div>
 </div>
 

@@ -95,12 +95,10 @@ function SendMail(To,Cc,Subject)
       <!-- Main Header -->
       <header class="main-header">
 
-        <!-- Logo -->
-        <a href="index2.html" class="logo">
+       <!-- Logo -->
+        <a class="logo" href="http://xpensy.com/UserProfile.php" >
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          
-          <!-- logo for regular state and mobile devices -->
-          		                         <img class=" navbar-left" height="50"  style="margin-left:20px; "  src="images/Logo3.png" alt="">
+          <img class=" navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
         </a>
 
         <!-- Header Navbar -->
@@ -180,7 +178,7 @@ function SendMail(To,Cc,Subject)
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
-			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
+			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
                         <!--<li><a href="GetReceiptsDownloads.php"><i class="fa fa-file-text-o"></i> <span>Generate PDF Receipts</span></a></li>-->
                         <!--li><a href="Get PDF Download.php"><i class="fa fa-file-o"></i> <span>Generate PDF Report</span></a></li-->
                         <li class="active"><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
@@ -343,7 +341,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>₹ Transportation Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -408,7 +406,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>₹ Meals Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -475,7 +473,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>₹ Lodging Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -538,7 +536,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>₹ Others Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -595,13 +593,13 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>₹ Grand Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
 		</table>
 	</td>
-</tr>-->
+</tr>
 
 
 
@@ -662,7 +660,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>₹ Grand Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -723,7 +721,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>$ Transportation Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -781,7 +779,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>$ Meals Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -840,7 +838,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>$ Lodging Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -900,7 +898,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>$ Others Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -920,7 +918,7 @@ if($rowcount != '')
 
 
 
-// tables for original
+
 <?php 
 }
 $dbh->connection = null;
@@ -969,7 +967,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>$ Grand Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -1165,10 +1163,9 @@ $dbh->connection=null;
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Anything you want
+         ©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -1249,4 +1246,11 @@ $dbh->connection=null;
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+<script>
+$( document ).ready(function() {
+    setTimeout(function(){ 
+alert("Due to inactivity you have been logged out");
+location.href="EndSession.php" }, 3600000);
+  });
+</script>
 </html>

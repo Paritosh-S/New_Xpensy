@@ -38,7 +38,7 @@ class PDF extends FPDF
 			$this->SetFont('Arial','I',10);
 			//Page number
 			$this->Cell(0,5,'Powered by ',0,0,'C');
-                       $this->Image('images/xlogo10.jpg',160,280,22);
+                       $this->Image('img/darkblack.png',160,280,40);
 		}
 	}
 $mypdf =new PDF;
@@ -132,12 +132,12 @@ $mypdf->Ln();
 //name & email
 $mypdf->SetFont('Arial', '', 10);
 
-$mypdf->setFillColor(265,265,265);
-$mypdf->Cell(15 ,6,"ID :-", 0, 0, 'L',true);
-$mypdf->SetFont('Arial', '', 10);
-$mypdf->setFillColor(265,265,265);
-$mypdf->Cell(170 ,6,$row3[2], 0, 0, 'L',true);
-$mypdf->Ln();
+//$mypdf->setFillColor(265,265,265);
+//$mypdf->Cell(15 ,6,"ID :-", 0, 0, 'L',true);
+//$mypdf->SetFont('Arial', '', 10);
+//$mypdf->setFillColor(265,265,265);
+//$mypdf->Cell(170 ,6,$row3[2], 0, 0, 'L',true);
+//$mypdf->Ln();
 $mypdf->setFillColor(265,265,265);
 $mypdf->Cell(15 ,6,"Name :-", 0, 0, 'L',true);
 $mypdf->SetFont('Arial', '', 10);
@@ -192,15 +192,10 @@ $res->execute();
 $Rcnt = $res->fetchColumn();
 if($Rcnt > 0)
 {
-
-
-   $sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='USD' AND ExCategory IN ('Flight','Railway','Taxi','Fairy','Bus') ORDER BY ExCategory,ClaimDate";
-	$result=$dbh->prepare($sql);  
-	$result->execute();
-        $RCount = $result->rowCount();
-        
-        
-        
+$sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='USD' AND ExCategory IN ('Flight','Railway','Taxi','Fairy','Bus') ORDER BY           ExCategory,ClaimDate";
+$result=$dbh->prepare($sql);  
+$result->execute();
+$RCount = $result->rowCount();
         if($RCount > 0)
         {
             $y = $mypdf->GetY();
@@ -215,7 +210,7 @@ if($Rcnt > 0)
         
 	while ($row = $result->fetch()) 
 	{
-$mypdf->SetFont('Arial','',9);
+                $mypdf->SetFont('Arial','',9);
 		$mypdf->Cell(30 ,10,$row[1], 'LTR', 0, 'C');
 		$x = $mypdf->GetX();
 		$y = $mypdf->GetY();
@@ -231,34 +226,23 @@ $mypdf->SetFont('Arial','',9);
 	        $result1=$dbh->prepare($sql);  
 	        $result1->execute();
 	        $total = $result1->fetchColumn();
-	         $mypdf->setFillColor(236, 244, 249);
-$mypdf->SetFont('Arial','',9);
-	$x = $mypdf->GetX();
-	$y = $mypdf->GetY();	
-      $mypdf->Cell(155 ,10, "Transportation Total :", 'LTB', 0, 'R',true);
-      $mypdf->setXY($x+155,$y);
-      
-        $mypdf->setFillColor(236, 244, 249);
+	        $mypdf->setFillColor(236, 244, 249);
+                $mypdf->SetFont('Arial','',9);
+	        $x = $mypdf->GetX();
+	        $y = $mypdf->GetY();	
+                $mypdf->Cell(155 ,10, "Transportation Total :", 'LTB', 0, 'R',true);
+                $mypdf->setXY($x+155,$y);
+                $mypdf->setFillColor(236, 244, 249);
+                $mypdf->Cell(30 ,10,"$ ".$total, 'TRB', 0, 'C',true);        
 
-        $mypdf->Cell(30 ,10,"$ ".$total, 'TRB', 0, 'C',true);        
-
-}
+        }
 /////////////////////////////////////////////////////////////////////////////
 	$y = $mypdf->GetY();
 	////////////////////////////////////////////////
- 
-
-
-
-
-       
-	$sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='USD' AND ExCategory IN ('Meal') ORDER BY ExCategory,ClaimDate";
+        $sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='USD' AND ExCategory IN ('Meal') ORDER BY ExCategory,ClaimDate";
 	$result=$dbh->prepare($sql);  
 	$result->execute();
         $RCount = $result->rowCount();
-        
-        
-        
         if($RCount > 0)
         {
             $y = $mypdf->GetY();
@@ -299,23 +283,13 @@ $mypdf->SetFont('Arial','',9);
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"$ ".$total, 'TRB', 0, 'C',true);   
 
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
+        }
 /////////////////////////////////////////////////////////////////////////////
 	$y = $mypdf->GetY();
-	////////////////////////////////////////////////
- 
 
 
 
 
-       
 	$sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='USD' AND ExCategory IN ('Hotel') ORDER BY ExCategory,ClaimDate";
 	$result=$dbh->prepare($sql);  
 	$result->execute();
@@ -363,7 +337,7 @@ $mypdf->SetFont('Arial','',9);
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"$ ".$total, 'TRB', 0, 'C',true);     
 
-}
+          }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -430,7 +404,7 @@ $mypdf->SetFont('Arial','',9);
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"$ ".$total, 'TRB', 0, 'C',true);
 
-}
+       }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -484,7 +458,7 @@ $mypdf->SetFont('Arial','',9);
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"INR ".$total, 'TRB', 0, 'C',true);  
 
-}
+         }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -500,7 +474,7 @@ $mypdf->SetFont('Arial','',9);
 
 
 
-$sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='INR' AND ExCategory IN ('Meal') ORDER BY ExCategory,ClaimDate";
+      $sql= "SELECT * from tbluserexpenses Where `UserName`= '$User' AND `Currency`='INR' AND ExCategory IN ('Meal') ORDER BY ExCategory,ClaimDate";
 	$result=$dbh->prepare($sql);  
 	$result->execute();
         $RCount = $result->rowCount();
@@ -547,7 +521,7 @@ $mypdf->SetFont('Arial','',9);
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"INR ".$total, 'TRB', 0, 'C',true);
 
-}
+        }
 
 
 
@@ -600,7 +574,7 @@ $mypdf->SetFont('Arial','',9);
       
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"INR ".$total, 'TRB', 0, 'C',true);
-}
+       }
 
 
 
@@ -652,7 +626,7 @@ $mypdf->SetFont('Arial','',9);
       
         $mypdf->setFillColor(236, 244, 249);
         $mypdf->Cell(30 ,10,"INR ".$total, 'TRB', 0, 'C',true);
-}
+         } 
 
 
 
@@ -766,93 +740,41 @@ try
 	Where `ClaimReceipt` != '' AND `UserName`= '$User'  ORDER BY ExCategory,ClaimDate,Currency";
 	$result=$dbh->prepare($sql); 
 	$result->execute();
-        $res = $result->rowCount();
-if($res > 0)
-{
-        $mypdf->AddPage();
-$mypdf->SetFont('Helvetica', '', 10);
-$mypdf->Ln(10);
+        
 	$count = 1;
-	$i=100;
-	$mypdf->Ln(5);
+	$mypdf->AddPage();
 	while ($row = $result->fetch()) 
 	{
 		$r = "uploads/".$row[0];
-		if($count<=3)
-		{						
-			if(1==$count)
-			{ 
-				$m=$i-100; 
-				$mypdf->Ln($m);
-				$mypdf->Image($r,45,20,80);
-				
-				$mypdf->Cell(10 ,10,$row[1],0);
-			$mypdf->Ln();
-				$mypdf->Cell(10 ,10,$row[2],0);
-                                $mypdf->Ln(1);
-                                $combo = $row[7]." ".$row[3];
-				//$mypdf->Cell(10 ,10,$row[7].$row[3],0);
-                                
-			} 
-			else
-			{ 
-				$m=$i-$m;
-				$mypdf->Ln($m);
-				$mypdf->Image($r,45,$i+5,80);
-				$mypdf->Cell(10 ,10,$row[1],0);
-				$mypdf->Ln();
-				$mypdf->Cell(10 ,10,$row[2],0);
-                                $mypdf->Ln(1);
-				 $combo = $row[7]." ".$row[3];
-				//$mypdf->Cell(10 ,10,$row[7].$row[3],0);
-                               
-				$i=$i+85;
-			}
-			$count++; 
-		}	
-		else 
-		{
-			$mypdf->AddPage();
-			$count=1; 
-			$i=100; 
-			if(1==$count)
-			{ 
-				$m=$i-100; 
-				$mypdf->Ln($m);
-				$mypdf->Image($r,45,20,80);
-				$mypdf->Ln();
-				$mypdf->Cell(10 ,10,$row[1],0);
-				$mypdf->Ln();
-				$mypdf->Cell(10 ,10,$row[2],0);
-                                $mypdf->Ln(1);
-				 $combo = $row[7]." ".$row[3];
-				//$mypdf->Cell(10 ,10,$row[7].$row[3],0);
-                               
-			} 
-			else
-			{ 
-				$m=$i-$m;
-				$mypdf->Ln($m);
-				$mypdf->Image($r,45,$i+5,80);
-				$mypdf->Cell(10 ,10,$row[1],0);
-				$mypdf->Ln();
-				$mypdf->Cell(10 ,10,$row[2],0);
-                                $mypdf->Ln(1);
-				 $combo = $row[7]." ".$row[3];
-				//$mypdf->Cell(10 ,10,$row[7].$row[3],0);
-                               
-				$i=$i+85;
-			}
-			$count++; 
-		}
-		  
-	}
-	
+	$mypdf->Cell(10 ,20,$row[1],0);	
+	$mypdf->Cell(20 ,20,$row[2],0);	
+if($row['Currency']=='USD')
+{
+$usd="$ ";
+$mypdf->Cell(30 ,20,$usd.$row[3],0);
 }
 else
 {
-        //echo "No Receipts uploaded!";
+$rs="Rs ";
+$mypdf->Cell(30 ,20,$rs.$row[3],0);
 }
+        //$combo = $row[7]." ".$row[3];
+	//$mypdf->Cell(30 ,20,$row[7].$row[3],0);
+
+$mypdf->Cell(35,35,$mypdf->Image($r,$mypdf->GetX(),$mypdf->GetY(),70),0,0,'C',false);
+   
+	$mypdf->Ln();
+	$mypdf->Ln();
+	$mypdf->Ln();
+	if($count%2==0)
+	{
+		$mypdf->AddPage();
+	}
+	$count++;
+	}
+
+
+	
 }
 catch(Exception $ex)
 {
@@ -884,7 +806,18 @@ catch(Exception $ex)
         $dbh->connection = null;
 	$mypdf->Output("PDFDOCS/$PDFName.pdf");
 	//$mypdf->Output();
-echo "Report generated successfully! <a href='ViewReports.php'>View now</a>";
+
+
+
+
+$stmt=$dbh->prepare("Select PDFName,PDFDate,ReportID,PDFType,PDFTitle from tblreportstore where UserID = '$UserID' order by ReportID desc");
+$stmt->execute();
+$row=$stmt->fetch();
+?>
+
+<b><?php echo $row[4]?></b>&nbsp;Report generated successfully!<a href="PDFDOCS/<?php echo $row[0].".pdf";?>" target="_blank"  >View Now</a>
+
+<?php
 }
 else
 {
