@@ -8,15 +8,14 @@ $mail->IsSMTP();
 $mail->SMTPDebug = 1;
 $mail->CharSet="UTF-8";
 $mail->SMTPSecure = 'ssl';
-
-$mail->Host = 'cp-30.webhostbox.net';                    //'cp-30.webhostbox.net';//'secure174.servconfig.com'; //'gator4198.hostgator.com'; 
-$mail->Port = 465;	        //30;//465; //465; //465;  //587;
-$mail->Username ="no_reply@xpensy.com";		//$_POST['usr']; //'gnavjyot@yahoo.com';
-$mail->Password = 'vulcaninfotech'; //$_POST['pwd'];
+$mail->Host = 'secure174.servconfig.com'; //'gator4198.hostgator.com'; //'smtp.mail.yahoo.com';
+$mail->Port =	465; //465;  //587;
+$mail->Username ="no_reply@xpensy.net";		//$_POST['usr']; //'gnavjyot@yahoo.com';
+$mail->Password = 'admin@xpensy'; //$_POST['pwd'];
 $mail->SMTPAuth = true;
 
-$mail->From = "no_reply@xpensy.com"; //"no_reply@vulcaninfotech.com"; //'gnavjyot@yahoo.com';
-$mail->Sender = "no_reply@xpensy.com"; //"no_reply@vulcaninfotech.com";
+$mail->From = "no_reply@xpensy.net"; //"no_reply@vulcaninfotech.com"; //'gnavjyot@yahoo.com';
+$mail->Sender = "no_reply@xpensy.net"; //"no_reply@vulcaninfotech.com";
 
 $ccc = explode(",", $_POST['MailCC']);
 foreach($ccc as $ccMail)
@@ -29,7 +28,7 @@ if(isset($ccMail) && $ccMail != '')
 }
 $mail->FromName = 'Xpensy Report';
 $pname = substr($_SESSION['pname'],8);
-$mail->SetFrom("no_reply@xpensy.com",$pname); //Name of user
+$mail->SetFrom("no_reply@xpensy.net",$pname); //Name of user
 
 
 $mail->AddReplyTo($_SESSION['login'],$pname); //('gnavjyot@yahoo.com', 'Information');
@@ -70,11 +69,14 @@ if(!$mail->Send())
   echo "Failed";
   //$_SESSION['mail'] = "Mailer Error: " . $mail->ErrorInfo;
   //header("Location: MailMe.php");
+echo " <script> alert('Hello! motherfucker!');     </script>";
 }
 else
 {
    echo "Success";
+echo " <script> alert('Hello! asshole!');     </script>";
+
   //$_SESSION['mail']="True";
-  //header("Location: MailMe.php");
+  header("Location: ViewReports.php");
 }
 ?>

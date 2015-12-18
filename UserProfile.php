@@ -9,8 +9,6 @@ error_reporting(0);
 		{
 			$User=$_SESSION['login'];
 			$UserID = $_SESSION['userid'];
-$_SESSION['loggedin_time'] = time();  
-
 		}
 		else
 		{
@@ -22,17 +20,6 @@ $_SESSION['loggedin_time'] = time();
 		session_destroy();
 		header("Location: EndSession.php");
 	}
-
-
-
-include("functions.php");
-if(isset($_SESSION["login"])) {
-	if(isLoginSessionExpired()) {
-		header("Location:EndSession.php?session_expired=1");
-	}
-}
-
-
 ?>
 <html>
   <head>
@@ -53,6 +40,10 @@ if(isset($_SESSION["login"])) {
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+	 
+<meta name="google-signin-client_id" content="918871235883-7pfhcqbgckd4lhci4qd5co8tcemoadu1.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -102,7 +93,13 @@ color:white;
   
   </script>
 <!--Datepicker code end here-->
-
+<script> function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
   </head>
   <body class="hold-transition skin-blue sidebar-mini" oncontextmenu="return false;" style="font-family:Segoe UI; font-size:12;">
     <div class="wrapper">
@@ -111,10 +108,9 @@ color:white;
       <header class="main-header">
 
         <!-- Logo -->
-       
-        <a class="logo responsive" href="http://xpensy.com/UserProfile.php" >
+        <a class="logo" href="http://xpensy.net/UserProfile.php" >
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left responsive"  height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+          <img class=" navbar-left" height="41"  style="margin-left:-10px; "   src="img/Xpensy.png" alt="XPENSY">
         </a>
 
         <!-- Header Navbar -->
@@ -159,7 +155,7 @@ color:white;
                       <a href="UpdateProfile.php" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="EndSession.php" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="EndSession.php" onclick="signOut()" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -196,12 +192,15 @@ color:white;
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
-                       <!-- <li><a href="#" data-toggle="modal" data-target="#myModal_addReceipt"><i class="fa fa-file-text-o"></i> <span>Generate PDF Receipt</span></a></li>-->
-                        <li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
+			<li class="active"><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
+                       <!-- <li><a href="#" data-toggle="modal" data-target="#myModal_addReceipt"><i class="fa fa-file-text-o"></i> <span>Generate PDF Receipts</span></a></li>-->
+                        <li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Reports</span></a></li>
                     
-                        <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Reports</span></a></li>
-                        <li><a href="UpdateProfile.php"><i class="fa fa-cogs"></i> <span>User Profile</span> </a></li>
+                        <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved PDF</span></a></li>
+
+<li><a href="saverpt.php"><i class="fa fa fa-inbox"></i>Saved Reports </a></li> 
+                  
+   <li><a href="UpdateProfile.php"><i class="fa fa-cogs"></i> <span>User Profile</span> </a></li>
                         
 			   
 
@@ -233,7 +232,7 @@ color:white;
                     <!-- The transport -->
 					<form class="form-horizontal" name="transport" action="" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
-                        <label for="inputName" class="col-sm-3 control-label">Category</label>
+                        <label for="inputName" class="col-sm-3 control-label">Catagory</label>
                         <div class="col-sm-9">
                          
 						  <select name="ExCategory" class="form-control">
@@ -241,18 +240,14 @@ color:white;
                         <option value="Railway">Railway</option>
                         <option value="Bus">Bus</option>
                         <option value="Taxi">Taxi</option>
-                        <option value="Ferry">Ferry</option>
+                        <option value="Fairy">Fairy</option>
                       </select>
                         </div>
                       </div>
 					  <div class="form-group">
                         <label for="inputExperience" class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
-
-                          <input name="Descr" type="text"  maxlength="100" class="form-control" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></input >
-
-				 
-
+                          <textarea name="Descr" class="form-control" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
@@ -306,8 +301,7 @@ color:white;
                         <label class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
 						<input type="hidden" name="ExCategory" value="Meal">
-                          <input class="form-control" name="Descr" placeholder="Description" maxlength="100" style="resize:vertical; maxlength="100""></input >
-
+                          <textarea class="form-control" name="Descr" placeholder="Description" maxlength="100" style="resize:vertical;"></textarea>
                         </div>
                       </div>
 					  
@@ -358,14 +352,14 @@ color:white;
                         <label for="inputExperience" class="col-sm-3 control-label">Name</label>
                         <div class="col-sm-9">
 						<input type="hidden" name="ExCategory" value="Hotel">	
-                          <input class="form-control" name="Descr" id="inputExperience" placeholder="Name of the hotel" style="resize:vertical;" maxlength="100"></input >
+                          <textarea class="form-control" name="Descr" id="inputExperience" placeholder="Name of the hotel" style="resize:vertical;" maxlength="50"></textarea>
                         </div>
                       </div>
                      
 					  <div class="form-group">
                         <label for="inputExperience" class="col-sm-3 control-label">Location</label>
                         <div class="col-sm-9">
-                          <input class="form-control" name="Descr" id="inputExperience" placeholder="Location of the hotel" style="resize:vertical;"  maxlength="100"></input >
+                          <textarea class="form-control" name="Descr" id="inputExperience" placeholder="Location of the hotel" style="resize:vertical;"  maxlength="50"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
@@ -411,7 +405,7 @@ color:white;
 				  <div class="tab-pane" id="other">
                    <form class="form-horizontal" name="other" action="" method="POST" enctype="multipart/form-data" >
                       <div class="form-group">
-                        <label for="inputName" class="col-sm-3 control-label">Category</label>
+                        <label for="inputName" class="col-sm-3 control-label">Catagory</label>
                         <div class="col-sm-9">
                          
 						  <select name="ExCategory" class="form-control">
@@ -427,7 +421,7 @@ color:white;
 					  <div class="form-group">
                         <label for="inputExperience" class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-9">
-                          <input class="form-control"  name="Descr" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></input >
+                          <textarea class="form-control"  name="Descr" id="inputExperience" placeholder="Description" maxlength="100" style="resize:vertical;"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
@@ -494,10 +488,11 @@ color:white;
                                         <input type="text" maxlength="30" name="Title" id="t1" class="form-control" placeholder="Write the title here">				 
                                      </div>
                                      <div class="col-md-3" >
-                                        <input type="button" name="set_title" value="Generate PDF Report" class="btn btn-success" id="btn1" onClick="CreateReport(Title.value,this.id)">
+                                        <input type="button" name="set_title" value="Generate PDF Report" class="btn btn-default" id="btn1" onClick="CreateReport(Title.value,this.id)">
                                      </div>
  <div class="col-md-3" >
-                                          <a href="UserProfile.php?&DelAll=all" onclick="return confirm('Are you sure you want to delete all records?')" class="btn btn-danger"><i class="fa fa-trash o"></i> <span>Delete all</span></a>
+                                          <!--<a href="UserProfile.php?&DelAll=all" onclick="return confirm('Are you sure you want to delete all records?')" class="btn btn-danger"><i class="fa fa-trash o"></i> <span>Delete all</span></a>-->
+<button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">Save Report</button>
                                      </div>
 </form>
 </div><!--end col-md-12-->
@@ -519,14 +514,12 @@ color:white;
 	      <div class="col-xs-12 table-responsive">
                   <table class="table table-custom table-responsive table-hover" style="overflow-y: auto;font-family:Segoe UI; font-size:12;">
                     <tr>
-                      <center>
-                      <th>Category</th>
+                      <th>Catagory</th>
                       <th>Description</th>
-                      <th><a  style="color:#000000;" href="UserProfile.php?&C=ClaimDate&ord=1" data-toggle="tooltip" data-placement="right" title="Sort expenses by date">Date</a></th>
-<th><a  style="color:#000000;"  data-toggle="tooltip" data-placement="left" title="Sort expenses by Amount" href="UserProfile.php?&C=ClaimAmt&ord=1">&nbsp&nbsp&nbspAmount&nbsp;&nbsp&nbsp</a></th>
-                      <th>Receipt</th>
+                      <th><a style=" text-decoration:none;"  href="UserProfile.php?&C=ClaimDate&ord=1" data-toggle="tooltip" data-placement="right" title="Sort expenses by date">Date</a></th>
+<th><a style=" text-decoration:none;" data-toggle="tooltip" data-placement="left" title="Sort expenses by Amount" href="UserProfile.php?&C=ClaimAmt&ord=1">&nbsp&nbsp&nbspAmount&nbsp;&nbsp&nbsp</a></th>
+                      <th class="glyphicon glyphicon-paperclip"></th>
                       <th>Action</th>
-                       </center>
                     </tr>
                     
 					<?php
@@ -836,9 +829,7 @@ while ($row1 = $stmt1->fetch())
 												</td>
 												 
 												<td><div class="form-group">
-     <input type="text" style="resize:vertical;font-size:12;" maxlength="100" rows=1 cols="25" name="ECClass"  class="form-control" value="<?php echo $row1[3]; ?>">				 
-
-													<!--<textarea class="form-control" maxlength="100" style="resize:vertical; font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row1[3]; ?></textarea>-->
+													<textarea class="form-control" maxlength="100" style="resize:vertical; font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row1[3]; ?></textarea>
 													</div>
 												</td>
 												
@@ -958,13 +949,9 @@ while ($row = $stmt->fetch())
 												<td title="Sort by Category">
 													<a href=UserProfile.php?&C=<?php echo $row[0];?>><strong><?php echo $row[0]; ?></strong></a>
 												</td>
-												<td>
-<!--<textarea class="form-control" maxlength="100" style="resize:vertical;font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row[3]; ?>
-</textarea>-->
-<div class="form-group">
-<input type="text" style="resize:vertical;font-size:12;" maxlength="100" rows=1 cols="25" name="ECClass"  class="form-control" value="<?php echo $row[3]; ?>">				 
-
-</div>
+												<td><div class="form-group">
+													<textarea class="form-control" maxlength="100" style="resize:vertical;font-size:12;" rows=1 cols="25" name="ECClass"><?php echo $row[3]; ?></textarea>
+												</div>
 												</td>
 												<td align=center>
 													<input type="text" size="9" name="ECDate" value="<?php echo $row[1]; ?>">
@@ -1054,6 +1041,7 @@ catch(PDOException $ex)
 <?php
 									}
 									?>
+
 					
               
 			
@@ -1061,6 +1049,45 @@ catch(PDOException $ex)
 				  </div>    
                 </div><!-- /.box-body -->
                
+<div class="container">
+  <!--<h2>Modal Example</h2>-->
+  <!-- Trigger the modal with a button -->
+ <!-- <center><button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal">Save Report</button></center>-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+           <form action="senddata.php" method="GET"> 
+	<h4>Subject :</h4><textarea required rows="4" cols="30" name="subject" maxlength="100"class="form-control"></textarea>
+	<input type="hidden" name="checkamtinr" value="<?php echo $result1 ?>">	
+             	<input type="hidden" name="checkamtusd" value="<?php echo $rowcount?>">				 
+			 
+                                   
+                                        <!-- <center><p id="show_status1" style="display:none;"></p></center>	-->
+ 
+        </div>
+        <div class="modal-footer">
+ <input type="submit" value="SAVE" name="send"  class="btn btn-success"></center>
+	</form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+
               </div><!-- /.box -->
 
               
@@ -1075,10 +1102,11 @@ catch(PDOException $ex)
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-        ©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>        </div>
+          Anything you want
+        </div>
         <!-- Default to the left -->
 		
-
+        <strong>Copyright &copy; 2016 <a href="index.php">Xpensy</a>.</strong> All rights reserved.
       </footer>
 <!-- Control Sidebar -->
     
@@ -1203,15 +1231,6 @@ function CreateReport(text, btnId)
 	}
 }
 </script>
-
-
- <script>
-$( document ).ready(function() {
-    setTimeout(function(){ 
-alert("Due to inactivity you have been logged out");
-location.href="EndSession.php" }, 3600000);
-  });
-</script>
-
- </body>
+   
+  </body>
 </html>

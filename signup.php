@@ -36,7 +36,7 @@ if(isset($_SESSION['message']))
 
 	else if($_SESSION['message']=='C')
 	{
-		$msg="<span style='color:green'><img src='images/x.png' width=25px height=18px valign=bottom> Incorrect Captcha!</span>";	
+		$msg="<span><img src='images/x.png' width=25px height=18px valign=bottom> Incorrect Captcha!</span>";	
 		$Smessage='';
 		session_destroy();
 	}
@@ -60,7 +60,7 @@ else
 ?>
 <?php 
 error_reporting(0);
-if(isset($_REQUEST['Submit'])) 
+if(isset($_REQUEST['message'])) 
 {
 	$message = $_SESSION['Umessage'];
 	unset($_SESSION['Umessage']);
@@ -450,11 +450,11 @@ function onSignIn(googleUser)
                             <div class="form-bottom">
 			                    <form role="form" action="UserSignup.php" method="POST" class="registration-form">
 			                    	<div class="form-group">
-									<?php echo $Smessage; echo "<br>"; ?>
+									<?php echo $Smessage; ?>
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <div class="icon-addon addon-md">
-                        <input type="text" placeholder="Name" class="form-control input-lg" name="Name">
+                         <input name="Name" required type="text" Placeholder="Name" id="name" title="Name" class="form-control">
                        
                     </div>
                     
@@ -464,17 +464,15 @@ function onSignIn(googleUser)
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                     <div class="icon-addon addon-md">
-                        <input type="email" placeholder="Email" class="form-control input-lg" name="UserId">
-                       
+                     <input  name="UserId"  type="email" Placeholder="Email ID" required="required" id="UserId" class="form-control input-lg">
                     </div>
-                    
-                </div>
+                    </div>
             </div>
 			                        <div class="form-group">
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <div class="icon-addon addon-md">
-                        <input type="password" placeholder="Password" class="form-control input-lg" name="UserPassword">
+                       <input required name="UserPassword" id="UserPassword" Placeholder="Password" type="password" title="Password" class="form-control input-lg">
                        
                     </div>
                     
@@ -484,17 +482,15 @@ function onSignIn(googleUser)
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <div class="icon-addon addon-md">
-                        <input type="password" placeholder="Re-Password" class="form-control input-lg" name="RePassword" id="RePassword">
-                       
+                        <input required name="RePassword" id="RePassword" Placeholder="Re-enter Password" type="Password" title="Confirm Password" class="form-control input-lg">
                     </div>
                     
                 </div>
             </div>
-            <br>
+            
 <?php include 'captCode.php'; ?>
-			<!--center>
-			                        <button type="submit" class="btn">Sign up </button>
-									</center-->
+
+			
 			                    </form><br>
 								<center><p>Already member ? <a href="login.php">Sign In here</a></p></center>
 <!--<div class="container-fluid">	

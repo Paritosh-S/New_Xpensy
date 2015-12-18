@@ -1,8 +1,9 @@
-﻿<?php 
+<?php 
 
 session_start();
 
 	error_reporting(0);
+
 	try
 	{
 		If(isset($_SESSION['login']) && isset($_SESSION['userid']))
@@ -37,7 +38,7 @@ else
 			$MobileNo = $_POST['mobileno'];
 			$EmailID2 = $_POST['emailid'];
 	
-			if (strlen($_POST["mobileno"])  >= 10)
+			if (isset($_POST['Uname']))
 			{
 				try
             {
@@ -63,6 +64,10 @@ else
 					{
 						//$_SESSION['Umessage'] = $flag;
 						$message = "<img src='images/Tick.png' width=25px height=18px valign=bottom> Updated successfully";
+echo "<script>
+	alert('level updated successfully');
+	
+	</script>";	
 						$_SESSION['pname'] = 'Welcome! '.$nm;
 						//Header('Location: '.$_SERVER['PHP_SELF']);
 						
@@ -79,7 +84,7 @@ else
 				//echo $ex->getMessage();
 			}
 			}
-			else
+			if (isset($_POST["mobileno"])  >= 10)
 			{
                $error_arr['mobileno'] = 'Mobile No must be of 10 digits';
             }			
@@ -109,17 +114,30 @@ else
 				{
 					//$_SESSION['Umessage'] = $flag;
 					$message = "<img src='images/Tick.png' width=25px height=18px valign=bottom> Updated successfully";
+echo "<script>
+	alert('Password Updated Successfully');
+	
+	</script>";	
+
 				}
 				else if($flag == '0')
 				{
 					//$_SESSION['Umessage'] = $flag;
 					$message = "<img src='images/x.png' width=25px height=20px valign=bottom> Please input correct details!";
+echo "<script>
+	alert('Please input correct details!');
+	
+	</script>";	
 				}
 			}
 			catch(PDOException $ex)
 			{
 				echo $ex->getMessage();
 				$_SESSION['Umessage'] = "Not Updated error occured";
+echo "<script>
+	alert('Not Updated error occured');
+	
+	</script>";
 				//echo "not Updated error occured";
 				$dbh->connection = NULL;
 			}
@@ -127,6 +145,10 @@ else
 		else
 		{
 			$message = "<img src='images/x.png' width=25px height=20px valign=bottom> Password string mismatched!";
+echo "<script>
+	alert('Password string mismatched!');
+	
+	</script>";
 		}
 					//echo "Updated
 		
@@ -192,14 +214,6 @@ function autoRefresh()
 
 </style>
 <script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-</script>
-<script>
 		$(document).ready(function()
 		{
 			$('[data-toggle="tooltip"]').tooltip();   
@@ -248,8 +262,11 @@ catch(PDOException $ex)
        <!-- Logo -->
         <a class="logo" href="http://xpensy.com/UserProfile.php" >
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+          <img class=" logo-lg navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+          <img class=" logo-mini navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+
         </a>
+ 
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -286,9 +303,7 @@ catch(PDOException $ex)
                       <a href="UpdateProfile.php" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-
-
-                      <a href="EndSession.php" onclick="signOut();" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="EndSession.php" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -329,8 +344,6 @@ catch(PDOException $ex)
                       
 			<li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
                         <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Reports</span></a></li>
-						
-			   <li><a href="saverpts.php"><i class="fa fa fa-inbox"></i> <span>SAVED Report new</span></a></li>
                         <li class="active"><a href="UpdateProfile.php" ><i class="fa fa-cogs"></i> <span>User Profile</span> </a></li>
                      
 			 
@@ -407,9 +420,10 @@ catch(PDOException $ex)
                   </div><!-- /.box-body -->
 
                  
-				  <?php echo $message; ?>
+				  
                 </form>
-                     </div>
+
+                        </div>
                       </div>
                     </div>
                     <div class="panel box box-success">
@@ -422,7 +436,13 @@ catch(PDOException $ex)
                       </div>
                       <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="box-body">
- <div class="form-group">
+
+
+
+
+
+
+
                          <form method="POST" action="" name="frmChange" class="form"  onSubmit="return validatePassword()">
                 
                   
@@ -430,13 +450,13 @@ catch(PDOException $ex)
 				                    <input name="currentPassword" type="password" class="form-control" placeholder="Old Password" required>
 							<span id="currentPassword" class="required"></span><BR>
 					   <input type="password" name="newPassword" class="form-control" placeholder="Enter New Password" required>
-
 					   <span id="newPassword" class="required"></span>
 					   <br>
 					<input type="password" name="confirmPassword" class="form-control" placeholder="Re-Enter New Password" required>
 					<span id="cofirmPassword" class="required"></span><br>
                   </div><!-- /.box-body -->
-<div class="box-footer">
+
+                                   <div class="box-footer">
                     <input type="submit" onclick="autoRefresh()" name="UpdatePass" value="Update" class="btn btn-success" > 
 					
                  
@@ -445,11 +465,15 @@ catch(PDOException $ex)
                         </div>
                       </div>
                     </div>
-                  <div class="panel box box-danger">
+
+
+
+
+                    <!--<div class="panel box box-danger">
                       <div class="box-header with-border">
                         <h4 class="box-title">
                           <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Delete Account
+                            Deactivate Account
                           </a>
                         </h4>
                       </div>
@@ -457,12 +481,28 @@ catch(PDOException $ex)
                         <div class="box-body">
 
 <div class="form-group">
-                   <!-- <a  class="btn btn-Danger type="submit" href="delete_acc.php?UserName=<?php echo $_SESSION['login']?>" onclick="return confirm('Are you sure, delete this records?')"><p class="btn btn-block btn-danger">Delete Account</p></a>
+                    <input type="submit" onclick="autoRefresh()" name="" value="Delete Account" class="btn btn-Danger" > 
+                  </div>-->
+ 
+
+                  <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Deactivate Account
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="box-body">
+
+<div class="form-group">
+                   <!-- <a  class="btn btn-Danger type="submit" href="delete_acc.php?UserName=<?php echo $_SESSION['login']?>" onclick="return confirm('Are you sure, delete this records?')"><p class="btn btn-block btn-danger">Deactivate Account</p></a>
                     <input type="submit" onclick="autoRefresh()" name="" value="Delete Account" class="btn btn-Danger" >--> 
                  
 
 <form name="delrpt" method="post" action="">
-					 <input type="submit" class="btn btn-danger " name="btndel" value="Delete all reports" onclick="return confirm('Are you sure you want to delete all records?');">
+					 <input type="submit" class="btn btn-danger " name="btndel" value="Deactivate Account" onclick="return confirm('Are you sure you want to delete all records?');">
 					 </form>
 <?php
 include('dbcon.php');
@@ -539,9 +579,16 @@ catch(Exception $e)
  </div>
  
 
-
-
                          
+
+
+
+
+
+
+
+
+
 
 
                         </div>
@@ -653,4 +700,11 @@ catch(Exception $e)
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+<script>
+$( document ).ready(function() {
+    setTimeout(function(){ 
+alert("Due to inactivity you have been logged out");
+location.href="EndSession.php" }, 3600000);
+  });
+</script>
 </html>

@@ -28,7 +28,7 @@ border-style: solid;
 
                <div class="">
                 <div class="">
-<!--<center><img href="#" alt="logo" src="http://xpensy.com/images/xlogo7.jpg" height="130px" width="130px">
+<!--<center><img href="#" alt="logo" src="http://xpensy.net/images/xlogo7.jpg" height="130px" width="130px">
 <h4 style="color:orange">E<h3 style="color:blue" >xpense</h3> </h4><h4 style="color:orange">R</h4><h3 style="color:blue" >eports</h3>...<h4 style="color:orange">S</h4><h3 style="color:blue" >implified</h3>
 <center><h3>Expense Reports...Simplified</h3></center>-->
                 </div><!-- /.box-header -->
@@ -50,7 +50,7 @@ border-style: solid;
 <div class="table-responsive">
 <table class="tabel"  border="" width="850px" cellspacing="0" cellpadding="5" style="border-collapse: collapse; color:black;text-align:center;border-style: solid;" >
 <tr  bgcolor="#28abcc" style = "border:0; border-style:solid none; ">
-<td  colspan="4"><img href="#" alt="logo" src="http://xpensy.com/img/darkblack.png" ></td>
+<td  colspan="4"><img href="#" alt="logo" src="http://xpensy.net/img/Xpensy.png" ></td>
 
 <!--<tr bgcolor="#3c8dbc" style="text-align:center" width="80%" height="30px"><td style="color:white" colspan="4" rowspan=""><b>Expense Report Details</b></td></tr>-->
  <tr bgcolor="#F1F1F1" border="1"   style="color:black;text-align:center;">

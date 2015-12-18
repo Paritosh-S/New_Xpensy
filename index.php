@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
           </button>
 <a href="index.php">
-     <img src="img/darkwhite.png"></a>
+     <img src="img/Xpensy.png"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -118,7 +118,7 @@
 
         <div class="row">
           <div class="col-lg-4 col-md-4">
-            <a class="footer-brand" href="index.php"> <img src="img/lightwhite.png"></a>
+            <a class="footer-brand" href="index.php"> <img src="img/footerlogo.png"></a>
    <!--  <p>       Xpensy started @ 2015 with vulcan's burning hatred for generating awful expense reports business and travel expense.With features like flexible expense report you will save time and money when managing expenses .Now,it is simplified to submit expense from any location across the globe.</p>-->
             
           </div>
@@ -129,7 +129,7 @@
             <!--  <a href="#"><i class="fa fa-thumbs-o-up"></i> Help </a><br><br>-->
              <ul class="list-inline list-unstyled social-networks">
               <li>
-                <a href="#">
+                <a href="https://www.facebook.com/Xpensy-199237910411268/?ref=hl">
                   <div class="icon-social icon-social-facebook normal">
                     <i class="fa fa-facebook"></i>
                     
@@ -140,8 +140,8 @@
                 </a>
               </li>
 
-              <li>
-                <a href="https://twitter.com/vulcaninfotech_">
+              <!--<li>
+                <a href="#">
                   <div class="icon-social icon-social-twitter normal">
                     <i class="fa fa-twitter"></i>
                   </div>
@@ -149,6 +149,7 @@
                     <i class="fa fa-twitter"></i>
                   </div>
                 </a>
+              </li>-->
 
              <!-- <li>
                 <a href="#">
@@ -183,7 +184,7 @@
     <div class="footer-after">
       <div class="container">
         <div class="row">
-          <p class="col-md-10">©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>| <a  href="http://xpensy.com/terms.php">Privacy & Terms</a>  </p>
+          <p class="col-md-10">©2015 All rights reserved | <a href="xpensy.net">Xpensy</a></p>
         
         </div><!-- /.row -->
       </div>
@@ -213,12 +214,12 @@ $email = filter_var($email, FILTER_SANITIZE_EMAIL); // Sanitizing E-mail.
 	{
 	  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-$subject = $message;
+$subject = $name;
 // To send HTML mail, the Content-type header must be set.
 $headers = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From: '.'no_reply@xpensy.com'. "\r\n"; // Sender's Email
-//$headers .= 'Cc:' . $email. "\r\n"; // Carbon copy to Sender
+$headers .= 'From: '.'no_reply@xpensy.net'. "\r\n"; // Sender's Email
+$headers .= 'Cc:' . $email. "\r\n"; // Carbon copy to Sender
 $template = '
 <html>
 <head>
@@ -226,7 +227,7 @@ $template = '
 <body>
 <div style="padding:50px; color:black; background-color:#e5f2ff;">
 <div style="background-color:#e5f2ff; color:black;">
-<center><img href="#" alt="logo" src="http://xpensy.com/images/xlogo7.jpg" height="130px" width="130px">
+<center><img href="#" alt="logo" src="http://xpensy.net/footerlogo.png" height="130px" width="130px">
 <h3>Expense Reports...Simplified</h3>
 </div>
 
@@ -239,7 +240,7 @@ $template = '
 //. 'Email:' . $email . '<br/><br/>'
 //. 'Contact No:' . $contact . '<br/><br/>'
 . 'Message:' . $message . '<br/><br/><br/><br/>'
-. '<h2><a style="text-decoration: none;"  href="http://xpensy.com/index.php" class="btn btn-primary">Visit Xpensy</a><br></h2>'
+. '<h2><a style="text-decoration: none;"  href="http://xpensy.net/index.php" class="btn btn-info">Visit Xpensy</a><br></h2>'
 . '</center><br><br>'
 . 'This is a Contact Confirmation mail.'
 . '<br/>'
@@ -260,10 +261,10 @@ $template1 = "<!DOCTYPE html>
 
 <div class='jumbotron' style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding-top: 30px;padding-bottom: 30px;margin-bottom: 30px;color: inherit;background-color: #eee;'>
 <center style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;'>
-<img src='http://xpensy.com/img/darkblack.png' alt='Xpensy Logo' style='width: 200px;height: 70px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border: 0;vertical-align: middle;page-break-inside: avoid;max-width: 100%!important;'>
+<img src='http://xpensy.net/img/bluehighres.png' alt='Xpensy Logo' style='width: 200px;height: 70px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border: 0;vertical-align: middle;page-break-inside: avoid;max-width: 100%!important;'>
   <h5 style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-family: inherit;font-weight: 500;line-height: 1.1;color: inherit;margin-top: 10px;margin-bottom: 10px;font-size: 14px;'>Expense Reports Simplified...</h5>      
   <p style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;margin-bottom: 15px;font-size: 21px;font-weight: 200;'><strong style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;'>Thank You ..For Contacting Us.</strong><br style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;'> <h6 style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-family: inherit;font-weight: 500;line-height: 1.1;color: inherit;margin-top: 10px;margin-bottom: 10px;font-size: 12px;'>Our support team will get back to you soon.</h6></p>
-<a href='http://xpensy.com/' class='btn btn-info' role='button' style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;background-color: #5bc0de;color: #fff;text-decoration: underline;cursor: pointer;display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;border-color: #46b8da;'>Let's Go To XPENSY</a>
+<a href='http://xpensy.net/' class='btn btn-info' role='button' style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;background-color: #5bc0de;color: #fff;text-decoration: underline;cursor: pointer;display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;border-color: #46b8da;'>Let's Go To XPENSY</a>
 </center>
 </div>
 
@@ -298,10 +299,12 @@ $sendmessage1 = wordwrap($sendmessage1, 70);
 
 // Send mail by PHP Mail Function.
 mail($email,$subject, $sendmessage, $headers);
-mail('no_reply@xpensy.com',$subject, $sendmessage1, $headers1);
+mail('support@xpensy.net',$subject, $sendmessage1, $headers1);
 //mail($email,$subject, $sendmessage, $headers);
-//mail('no_reply@xpensy.com',$subject, $sendmessage1, $headers1);
+//mail('no_reply@xpensy.net',$subject, $sendmessage1, $headers1);
+
 echo "<script type='text/javascript'>alert('Message sent successfully')</script>";
+
 
 } else {
 echo "<script type='text/javascript'>alert('Invalid email')</script>";

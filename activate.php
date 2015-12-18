@@ -14,27 +14,27 @@ $mail->IsSMTP();
 $mail->SMTPDebug = 1;
 $mail->CharSet="UTF-8";
 $mail->SMTPSecure = 'ssl';
-$mail->Host = 'cp-30.webhostbox.net'; //'secure174.servconfig.com'; //'gator4198.hostgator.com'; //'smtp.mail.yahoo.com';
-$mail->Port =	465;//465; //465;  //587;
-$mail->Username ="no_reply@xpensy.com";
-$mail->Password = 'vulcaninfotech'; //$_POST['pwd'];
+$mail->Host = 'secure174.servconfig.com'; //'gator4198.hostgator.com'; //'smtp.mail.yahoo.com';
+$mail->Port =	465; //465;  //587;
+$mail->Username ="no_reply@xpensy.net";
+$mail->Password = 'admin@xpensy'; //$_POST['pwd'];
 $mail->SMTPAuth = true;
 
-$mail->From = "no_reply@xpensy.com"; //'gnavjyot@yahoo.com';
-$mail->Sender = "no_reply@xpensy.com";
+$mail->From = "no_reply@xpensy.net"; //'gnavjyot@yahoo.com';
+$mail->Sender = "no_reply@xpensy.net";
 //$mail->AddCC($_POST['MailCC']);
 $mail->FromName = 'XPENSY';
-$mail->SetFrom("no_reply@xpensy.com",'XPENSY'); //Name of user
+$mail->SetFrom("no_reply@xpensy.net",'XPENSY'); //Name of user
 
 
 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
 $mail->Subject    = 'Account activation link';
 
 //$mail->Body    = "Thank you for using our services, we hope you will be satisfied by the services we provide to you. Just one more step required to start using E-Expense, 
-//please click the following link: http://xpensy.com/registration.php?&rdr=".$salt."&identity=".$id;
+//please click the following link: http://xpensy.net/registration.php?&rdr=".$salt."&identity=".$id;
 
 //$msg = "Thank you for using our services, we hope you will be satisfied by the services we provide to you. Just one more step required to start using E-Expense, 
-//please click the following link:<a href=' http://xpensy.com/registration.php?&rdr='.$salt.'&identity='.$id; ' class='btn'>click here</a>
+//please click the following link:<a href=' http://xpensy.net/registration.php?&rdr='.$salt.'&identity='.$id; ' class='btn'>click here</a>
 
 $msg1 = "<!DOCTYPE html>
 <html lang='en' style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-family: sans-serif;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;font-size: 10px;-webkit-tap-highlight-color: rgba(0,0,0,0);'>
@@ -50,10 +50,10 @@ $msg1 = "<!DOCTYPE html>
 
 <div class='jumbotron' style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding-top: 30px;padding-bottom: 30px;margin-bottom: 30px;color: inherit;background-color: #eee;'>
 <center style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;'>
-<img src='http://xpensy.com/img/darkblack.png' alt='Xpensy Logo' style='width: 200px;height: 100px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border: 0;vertical-align: middle;page-break-inside: avoid;max-width: 100%!important;'>
+<img src='http://xpensy.net/img/bluehighres.png' alt='Xpensy Logo' style='width: 200px;height: 70px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border: 0;vertical-align: middle;page-break-inside: avoid;max-width: 100%!important;'>
   <h5 style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-family: inherit;font-weight: 500;line-height: 1.1;color: inherit;margin-top: 10px;margin-bottom: 10px;font-size: 14px;'>Expense Reports Simplified...</h5>      
   <p style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;margin-bottom: 15px;font-size: 21px;font-weight: 200;'><strong style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;'>Congratulations</strong><br style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;'> We hope you will be satisfied by the services we provide to you.</p>
-<a href='http://xpensy.com/registration.php?&rdr=$salt&identity=$id ' class='btn btn-info' role='button'  style=' -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;background-color: #5bc0de;color: #fff;text-decoration: underline;cursor: pointer;display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;border-color: #46b8da; ' >Let's Go To XPENSY</a>
+<a href='http://xpensy.net/registration.php?&rdr=$salt&identity=$id ' class='btn btn-info' role='button'  style=' -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;background-color: #5bc0de;color: #fff;text-decoration: underline;cursor: pointer;display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;border-color: #46b8da; ' >Let's Go To XPENSY</a>
 </center>
 </div>
 
@@ -75,7 +75,7 @@ $mail->AddAddress($toemail) ;
 if(!$mail->Send())
 {
 //echo "<br>Mailer Error: " . $mail->ErrorInfo;
-$message="Sorry! <br>Unable to process your request please try again! //<a href='http://xpensy.com' style='font-style:open_sanslight; color: blue; font-size: 16;'>Go Home</a>";
+$message="Sorry! <br>Unable to process your request please try again! //<a href='http://xpensy.net' style='font-style:open_sanslight; color: blue; font-size: 16;'>Go Home</a>";
 }
 else
 {
@@ -101,7 +101,7 @@ function reload()
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 <style>
 body { 
-  background: url(http://xpensy.com/assets/img/backgrounds/1.jpg) no-repeat center center fixed; 
+  background: url(http://xpensy.net/assets/img/backgrounds/1.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
