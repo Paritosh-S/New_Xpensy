@@ -389,7 +389,7 @@ function onSignIn(googleUser)
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<img src="img/lightwhite.png">
+					<img src="img/footerlogo.png">
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
@@ -414,7 +414,7 @@ function onSignIn(googleUser)
                         <div class="col-sm-4 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<img src="img/lightwhite.png">                        		</div>
+                        			<img src="img/footerlogo.png">                        		</div>
                         		<div class="form-top-right">
                         			<i class="fa fa-lock"></i>
                         		</div>
@@ -422,7 +422,7 @@ function onSignIn(googleUser)
                             <div class="form-bottom">
 			                    <form role="form" action="UserLogin.php" method="post" class="registration-form">
 			                    	<div class="form-group">
-									<?php echo $Lmessage; ?>
+									<?php echo $Lmessage; ?><br>
                 <div class="input-group input-group-md">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                     <div class="icon-addon addon-md">
@@ -437,7 +437,6 @@ function onSignIn(googleUser)
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <div class="icon-addon addon-md">
                         <input type="password" placeholder="Password" class="form-control input-lg" name="UPassword">
-                       
                     </div>
                     
                 </div>
@@ -445,15 +444,16 @@ function onSignIn(googleUser)
 			<center>
 			                        <button type="submit" class="btn">Login </button>
 									</center>
-			                    </form>
-<center><p><a href="loginforgot.php">Forgot Password?</a></p>
+			                    </form><br>
 <center><p>Not a member yet ? <a href="signup.php">Sign up here</a></p>
 
 <div class="container-fluid">	
 <div class="row">Or Sign In with</div>							
 <div class="row">
 
-<div class=" g-signin2 col-md-4 " data-onsuccess="onSignIn"></div>
+
+<div class="g-signin2 col-md-4 " data-onsuccess="onSignIn"></div>
+
 <div class="col-md-offset-4 col-md-4"><a onclick="logIn()"><img src="img/fb.png" ></a></div>
 <div>
 </div>

@@ -33,7 +33,7 @@ if(isset($_POST['NewPassword']) && isset($_POST['RePassword']) && isset($_POST['
 		$result = $stmt->fetchColumn();
 		if($result == '1')
 		{
-			$Lmessage="<img src='images/Tick.png' width=25px height=20px valign=bottom> Password changed.Please <a href='login.php' style='font-weight:bold; font-family:calibri; color:blue;'>LOGIN</a>";
+			$Lmessage="<img src='images/Tick.png' width=25px height=20px valign=bottom> Password changed.Please <a href='http://xpensy.com/login.php' style='font-weight:bold; font-family:calibri; color:blue;'>LOGIN</a>";
 		}
 		else
 		{

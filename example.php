@@ -12,10 +12,10 @@
 
 <div class="jumbotron">
 <center>
-<img src="http://xpensy.com/img/Xpensy.png" alt="Xpensy Logo" style="width:200px;height:100px;">
+<img src="http://xpensy.net/img/Xpensy.png" alt="Xpensy Logo" style="width:200px;height:100px;">
   <h5>Expense Reports Simplified...</h5>      
-  <p>We have received your request to reset your password, please click on the following link and reset your password</p>
-<a href='<http://www.Xpensy.com/ResetPassword.php?&AT=$AT&identity=$uid&tracker=$pwd' class='btn btn-info' role='button' >Lets Go To XPENSY</a> 
+  <p><strong>Thank You ..For Contacting Us.</strong><br> <h6>Our support team will get back to you soon.</h6></p>
+<a href="http://xpensy.net/" class="btn btn-info" role="button" >Let's Go To XPENSY</a>
 </center>
 </div>
 
