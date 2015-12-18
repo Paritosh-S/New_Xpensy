@@ -53,10 +53,12 @@ font-weight:bold;
     <tr>
                <td align="center">
                         <label for='message'>Enter characters you see:</label><br>
-                        <div class="col-xs-5"><input name="captcha_code" type="text" title="Enter Captcha code" class="form-control" style="text-align:center;"></div>			
+                        <div class="col-xs-5"><input required name="captcha_code" type="text" title="Enter Captcha code" class="form-control" style="text-align:center;"></div>			
 			<img src="captcha.php?rand=<?php echo rand();?>" id='captchaimg' style="border:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href='javascript: refreshCaptcha();'><img src="images/reload.png" height="30px" width="30px" title="Refresh Captcha"></a>
 			<br><br>
+  <input required type="checkbox" name="vehicle" value="Bike"> &nbsp;I agree to the <a href="terms.php">Terms Of Service</a><br><br>
+
 			<input  id="BtnSignup" class="btn btn-success" value="Create Account" name="Submit" type="Submit" onsubmit="return validate();">
 		</td>
     </tr>

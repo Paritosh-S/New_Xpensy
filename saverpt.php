@@ -1,9 +1,29 @@
-<?php
-error_reporting(0);
+<?php 
+
 session_start();
+
+	error_reporting(0);
+	try
+	{
+		If(isset($_SESSION['login']) && isset($_SESSION['userid']))
+		{
+			$User=$_SESSION['login'];
+			$UserID = $_SESSION['userid'];			
+		}
+		else
+		{
+			header("Location: index.php");
+		}		
+	}
+	catch(Exception $ex)
+	{
+		session_destroy();
+		header("Location: EndSession.php");
+	}
+	
 if(isset($_SESSION['login']))
 {
-	$User = $_SESSION['login'];
+	$User=$_SESSION['login'];
 	$UserID = $_SESSION['userid'];
 }
 else
@@ -11,70 +31,22 @@ else
 	echo "Session Expired! Login Again.";	
 	header("Location: EndSession.php");
 }
-if(isset($_POST['name']) && isset($_POST['mobileno']) && isset($_POST['emailid']))
-	{				
-		if(isset($_REQUEST['Update']))
-		{
-			try
-                        {
-					$nm = $_POST['name'];
-					$gender = 'N';
-					$MobileNo = $_POST['mobileno'];
-					$EmailID2 = $_POST['emailid'];
-					$compny = $_POST['company'];
-                        		$brnch = $_POST['branch'];
-                        		$desig = $_POST['designation'];
-                        		
-					include('dbcon.php');
-					$stmt = $dbh->prepare("CALL sp_UpdateUserInfo(?,?,?,?,?)");
-					$stmt->execute(array($nm,$User,$gender,$MobileNo,$EmailID2));
-					$Flag = $stmt->fetchColumn();
-					include('dbcon.php');
-					$dbh->connection = NULL;
-					$stmt1 = $dbh->prepare("CALL sp_UpdateEmpInfo(?,?,?,?)");
-					$stmt1->execute(array($UserID,$compny ,$brnch ,$desig ));
-					$Flag1 = $stmt1->fetchColumn();						
-					$dbh->connection = NULL;
-									
-					//if($Flag == '1' && $Flag1 == '1')
-					if($Flag == '1' && $Flag1 == '1')
-					{
-						//$_SESSION['Umessage'] = $flag;
-						$message = "<img src='images/Tick.png' width=25px height=18px valign=bottom> Updated successfully";
-						$_SESSION['pname'] = "Welcome! ".$nm;
-						//Header('Location: '.$_SERVER['PHP_SELF']);
-						
-					}
-					else
-					{
-						//$_SESSION['Umessage'] = $flag;
-						$message = "<img src='images/x.png' width=25px height=20px valign=bottom> Not updated, try again";
-					}
-					
-			}
-			catch(PDOException $ex)
-			{
-				//echo $ex->getMessage();
-			}
-		}
+	
 		
-	}	
 ?>
 
-
-
-<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
-<script type="text/javascript">
+<!--script type="text/javascript">
 function autoRefresh()
 {
 	window.location = window.location.href;
+
 }
-</script>
+</script-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,7 +65,15 @@ function autoRefresh()
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
+	    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+<style>
+
+
+</style>
+
+		<script src="new_login_signup.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,85 +82,18 @@ function autoRefresh()
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
-  <?php 
-try
-{
-include('dbcon.php');
-$sql = "select u.Name,u.Gender,u.MobileNo,u.EmailID2,e.EmpCompany,e.EmpBranch,e.EmpDesignation
- from tbluserdetails u inner join tblempdetails e on u.UserID = e.UserID where u.UserID = '$UserID'";
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
-while($result = $stmt->fetch())
-{
-	$name = $result[0];
-	//$gen = $result[1];
-	$mob = $result[2];
-	$email = $result[3];
-	$company = $result[4];
-	$branch = $result[5];
-	$desig = $result[6];
-}
-}
-catch(PDOException $ex)
-{
-	
-}
-?>
-<body>
-<?php
-    if($_SERVER['REQUEST_METHOD']=='POST')
-	{
-        $MobileNo = $_POST['mobileno'];
-        $EmailID2 = $_POST['emailid'];
-        $valid_arr = array();
-        $error_arr = array();
-			if(preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$/',$EmailID2))
-				{
-					$valid_arr['emailid'] = $EmailID2;
-				}
-             else{
-                    $error_arr['emailid'] = 'Please enter valid email address';
-                }
-	
-			if (strlen($_POST["mobileno"])  >= 10)
-			{
-				$valid_arr['mobileno'] = $MobileNo;
-			}
-			else{
-                    $error_arr['mobileno'] = 'Mobile No must be of 10 digits';
-                }
-	}
-?>
-  <body class="hold-transition skin-blue sidebar-mini">
+
+  <body class="hold-transition skin-blue sidebar-mini" style="font-family:Segoe UI;font-size:12;">
+  
     <div class="wrapper">
 
       <!-- Main Header -->
       <header class="main-header">
 
-        <!-- Logo -->
-        <a href="UserProfile.php" class="logo">
+       <!-- Logo -->
+        <a class="logo" href="http://xpensy.com/UserProfile.php" >
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left" height="50"  style="margin-left:20px; "  src="images/Logo3.png" alt="">
+          <img class=" navbar-left" height="41"  style="margin-left:-14px; "  src="img/Xpensy.png" alt="XPENSY">
         </a>
 
         <!-- Header Navbar -->
@@ -192,14 +105,7 @@ catch(PDOException $ex)
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less-->
-            
-
-              <!-- Notifications Menu -->
-           
-              <!-- Tasks Menu -->
-            
-              <!-- User Account Menu -->
+             
               <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -213,7 +119,8 @@ catch(PDOException $ex)
                   <li class="user-header">
 <img src="dist/img/default.png" class="img-circle" alt="User Image">
 
-                    <p><?php echo substr($_SESSION['pname'],9); ?>
+                    <p>
+<?php echo substr($_SESSION['pname'],9); ?>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -247,7 +154,7 @@ catch(PDOException $ex)
 <img src="dist/img/default.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p><?php echo $_SESSION['pname'] ?></p>
+              <p><?php echo substr($_SESSION['pname'],9); ?></p>
               <!-- Status -->
              
             </div>
@@ -261,20 +168,15 @@ catch(PDOException $ex)
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
-			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
-            <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Documents</span></a></li>
-            <li><a href=""><i class="fa fa-trash o"></i> <span>Delete all</span></a></li>
-			 <li><a href="Get PDF Download.php"><i class="fa fa-file-o"></i> <span>Reports</span></a></li>
-			  <li><a href="GetReceiptsDownloads.php"><i class="fa fa-file-text-o"></i> <span>Receipts</span></a></li>
-			   <li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>Send Mail</span></a></li>
+			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
+                      
+			<li><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
+                        <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved PDF</span></a></li>
+						<li class="active"><a href="saverpt.php"><i class="fa fa fa-inbox"></i> <span>Saved Reports</span></a></li>
+                        <li><a href="UpdateProfile.php" ><i class="fa fa-cogs"></i> <span>User Profile</span> </a></li>
+                     
 			   
-            <li class="treeview">
-              <a href="#"><i class="fa fa-cogs"></i> <span>Settings</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-               <li class="active"><a href="UpdateProfile.php"><i class="fa fa-picture-o"></i> Update your Profile</a></li>
-                <li><a href="pass.php"><i class="fa fa-unlock"></i>Change Password</a></li>
-              </ul>
-            </li>
+
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -282,99 +184,88 @@ catch(PDOException $ex)
 
       <!-- Content Wrapper. Contains page content -->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Settings
-           
+            Blank page
           </h1>
          
         </section>
 
         <!-- Main content -->
- <section class="content">
-          <div class="row">
-            <!-- left column -->
-            <div class="col-md-6">
-              <!-- general form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Update Profile</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->			
-                <form id="user_details" method="post" action="" class="form" onSubmit="return validateUserdetails()">
-                  <div class="box-body">
-				  
-				   <div class="form-group">
-                      
-                      <input type="text" name='name' class='form-control'  placeholder='Name' value='<?php echo $name; ?>'>
-                    </div>
-					<div class="form-group">					                    
-                      <input type="text" class="form-control"  name="mobileno"  class='name' placeholder='Mobile No'  value='<?php echo $mob;?>'/>
-                    </div>
-					 <div class="form-group">
-                      
-                      <input type="email" name="emailid" class='form-control' placeholder='Email Id' value='<?php echo $email;?>'>
-                    </div>
-					
-					<div class="form-group">
-                      
-                      <input type="text" class='form-control' name='company' class='name'  placeholder='Company'  value='<?php echo $company; ?>'>
-                    </div>
-					
-					<div class="form-group">
-                      
-                      <input type="text" class='form-control' name='branch' class='name' placeholder='Branch'  value='<?php echo $branch; ?>'>
-                    </div>
-					
-					<div class="form-group">
-                      
-                      <input type="text" class='form-control' name='designation' class='name'  placeholder='Designation' value='<?php echo $desig; ?>'>
-                    </div>
-					
-					
-					                   
-									   
-                    <div class="checkbox">
-                      
-                    </div>
-                  </div><!-- /.box-body -->
+        <section class="content">
 
-                  <div class="box-footer">
-                    <input type="submit" onclick="autoRefresh()" name="Update" value="Update" class="btn btn-primary" > 
+          <!-- Default box -->
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Inbox</h3>
+            </div>
+            <div class="box-body">
+              <div class="box-body no-padding">
+                  <div class="mailbox-controls">
+                    <!-- Check all button -->
+                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+                    <div class="btn-group">
+                      <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                      </div><!-- /.btn-group -->
+                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                    <div class="pull-right">
+                      1-50/200
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                      </div><!-- /.btn-group -->
+                    </div><!-- /.pull-right -->
                   </div>
-                </form>
-              </div><!-- /.box -->
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+<?php
+$user = $_SESSION['login'];
+include('dbcon.php');
+$sql = "SELECT * FROM countsend WHERE UserName='$user' ORDER BY datetime DESC";
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
+while($row=$stmt->fetch())
+{
+$temp=$row[0];
+$temp1=$row[2];
+$msgEncoded = base64_encode($temp);
+$msgEncoded1= base64_encode($temp1);
+?>
 
-              <!-- Form Element sizes -->
-             
+                          <td><input type="checkbox"></td>
+                         <?php  echo  "<td class='mailbox-name'><a href=\"read_report.php?UserName=$msgEncoded&datetime=$msgEncoded1\">$row[0]</a></td>"; ?>
+                          <!--<td class="mailbox-name"><a href="read_report.php?UserName=$msgEncoded&datetime=$msgEncoded1"><?php echo $row[0];?> </a></td>-->
+                          <td class="mailbox-subject"><?php echo $row[1];?></td>
+                          <td class="mailbox-attachment"><?php echo $row[2];?></td>
+                      
 
-            
-
-           
-
-            </div><!--/.col (left) -->
-            <!-- right column -->
-           
-              <!-- general form elements disabled -->
-              
-                  </form>
+                        </tr>
+                    <?php }?>   
+                      </tbody>
+                    </table><!-- /.table -->
+                  </div><!-- /.mail-box-messages -->
                 </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!--/.col (right) -->
-          </div>   <!-- /.row -->
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+              
+            </div><!-- /.box-footer-->
+          </div><!-- /.box -->
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
+
 
       <!-- Main Footer -->
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Anything you want
+  ©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -449,10 +340,53 @@ catch(PDOException $ex)
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
+	
+<script src="plugins/iCheck/icheck.min.js"></script>
+    <!-- Page Script -->
+    <script>
+      $(function () {
+        //Enable iCheck plugin for checkboxes
+        //iCheck for checkbox and radio inputs
+        $('.mailbox-messages input[type="checkbox"]').iCheck({
+          checkboxClass: 'icheckbox_flat-blue',
+          radioClass: 'iradio_flat-blue'
+        });
 
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-         Both of these plugins are recommended to enhance the
-         user experience. Slimscroll is required when using the
-         fixed layout. -->
+        //Enable check and uncheck all functionality
+        $(".checkbox-toggle").click(function () {
+          var clicks = $(this).data('clicks');
+          if (clicks) {
+            //Uncheck all checkboxes
+            $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+            $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+          } else {
+            //Check all checkboxes
+            $(".mailbox-messages input[type='checkbox']").iCheck("check");
+            $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+          }
+          $(this).data("clicks", !clicks);
+        });
+
+        //Handle starring for glyphicon and font awesome
+        $(".mailbox-star").click(function (e) {
+          e.preventDefault();
+          //detect type
+          var $this = $(this).find("a > i");
+          var glyph = $this.hasClass("glyphicon");
+          var fa = $this.hasClass("fa");
+
+          //Switch states
+          if (glyph) {
+            $this.toggleClass("glyphicon-star");
+            $this.toggleClass("glyphicon-star-empty");
+          }
+
+          if (fa) {
+            $this.toggleClass("fa-star");
+            $this.toggleClass("fa-star-o");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

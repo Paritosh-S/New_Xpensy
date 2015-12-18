@@ -95,10 +95,12 @@ function SendMail(To,Cc,Subject)
       <!-- Main Header -->
       <header class="main-header">
 
-       <!-- Logo -->
-        <a class="logo" href="http://xpensy.com/UserProfile.php" >
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <img class=" navbar-left" height="41"  style="margin-left:-14px; "   src="img/darkwhite.png" alt="XPENSY">
+          
+          <!-- logo for regular state and mobile devices -->
+          		                         <img class=" navbar-left" height="50"  style="margin-left:20px; "  src="images/Logo3.png" alt="">
         </a>
 
         <!-- Header Navbar -->
@@ -178,11 +180,12 @@ function SendMail(To,Cc,Subject)
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
-			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Report</span></a></li>
+			<li><a href="UserProfile.php"><i class="fa fa-edit"></i> <span>Create Reports</span></a></li>
                         <!--<li><a href="GetReceiptsDownloads.php"><i class="fa fa-file-text-o"></i> <span>Generate PDF Receipts</span></a></li>-->
                         <!--li><a href="Get PDF Download.php"><i class="fa fa-file-o"></i> <span>Generate PDF Report</span></a></li-->
                         <li class="active"><a href="MailMe.php"><i class="fa fa-envelope"></i> <span>E-Mail Current Report</span></a></li>
-                        <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved Reports</span></a></li>
+                        <li><a href="ViewReports.php"><i class="fa fa-files-o"></i> <span>Saved PDF</span></a></li>
+						<li><a href="saverpt.php"><i class="fa fa fa-inbox"></i> <span>Saved Reports</span></a></li>
                         <li><a href="UpdateProfile.php"><i class="fa fa-cogs"></i> <span>User Profile</span></a></li>
                         <!--<li><a href=""><i class="fa fa-trash o"></i> <span>Delete all</span></a></li>-->
 			   
@@ -341,7 +344,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>₹ Transportation Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -406,7 +409,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>₹ Meals Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -473,7 +476,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>₹ Lodging Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -536,7 +539,7 @@ if($result1 != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;" ><strong>₹ Others Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;" ><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$result1; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -589,17 +592,17 @@ if($rowcount != '')
 {
 ?>
 <tr valign=bottom>
-	<td bgcolor="#66a2ff" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:double; height:35px;" >
+	<td bgcolor="#8bbdda" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:double; height:35px;" >
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>₹ Grand Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
 		</table>
 	</td>
-</tr>
+</tr>-->
 
 
 
@@ -660,7 +663,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>₹ Grand Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "₹ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -721,7 +724,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>$ Transportation Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -779,7 +782,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>$ Meals Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -838,7 +841,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>$ Lodging Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -898,7 +901,7 @@ if($rowcount != '')
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>$ Others Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
@@ -918,7 +921,7 @@ if($rowcount != '')
 
 
 
-
+// tables for original
 <?php 
 }
 $dbh->connection = null;
@@ -963,28 +966,17 @@ if($rowcount != '')
 {
 ?>
 <tr valign=bottom>
-	<td bgcolor="#66a2ff" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:double; height:35px;" >
+	<td bgcolor="#8bbdda" colspan="8" align="right"  style="border-radius: 5px 5px 5px 5px; border-bottom-style:double; height:35px;" >
 		<table width=100% border=0>
 			<tr>
 				<td width=15%></td>
-				<td align=right  width=20% style="color:white;"><strong>$ Grand Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align=right  width=20% style="color:white;"><strong>Total:&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td bgcolor="white" width=10% style="text-align:center;"><strong><?php echo "$ ".$rowcount; ?></strong></td>
                                 <td width=1%></td>
 			 </tr>
 		</table>
 	</td>
 </tr>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1013,7 +1005,7 @@ $dbh->connection = null;
  <?php
 include('dbcon.php');
 //<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_CategorySort_transportation(?,?)");
+$stmt2 = $dbh->prepare("CALL sp_CategorySort(?,?)");
 $stmt2->execute(array($User,$C));
 while($showimage = $stmt2->fetch())
 {
@@ -1024,111 +1016,24 @@ echo "<div class='mailbox-attachment-info'>
                         <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;₹ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
 echo"</td></tr>";
 }}
-include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_CategorySort_meal(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;₹ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}
-include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_CategorySort_lodging(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;₹ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}
-include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_CategorySort_Other(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;₹ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}
-include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_DCategorySort_transportation(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}
-include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_DCategorySort_meal(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}
-include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_DCategorySort_lodging(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}include('dbcon.php');
-//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
-$stmt2 = $dbh->prepare("CALL sp_DCategorySort_other(?,?)");
-$stmt2->execute(array($User,$C));
-while($showimage = $stmt2->fetch())
-{
-if($showimage[5] != null)
-{
-	echo "<td width='100px'><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-echo "<div class='mailbox-attachment-info'>
-                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ &nbsp;$showimage[0]&nbsp;$showimage[1]</a> </div>";
-echo"</td></tr>";
-}}
+
 $dbh->connection=null;
 include('dbcon.php');
 
-$stmt = $dbh->prepare("CALL sp_DCategorySort_transportation(?,?)");
+$stmt = $dbh->prepare("CALL sp_DCategorySort(?,?)");
 $stmt->execute(array($User,$C));
 while($showimage1 = $stmt->fetch())
 {
 if($showimage1[5] != null)
 {
- //echo " <tr class='mailbox-attachments clearfix' widdth='100px'><td><a target='_blank' href='uploads/$showimage1[5]'><span class='mailbox-attachment-icon has-img'>
-//<img src='uploads/$showimage1[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
-//echo "<div class='mailbox-attachment-info'>
-                        //<a target='_blank' href='uploads/$showimage1[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ //&nbsp;$showimage1[0]&nbsp;$showimage1[1]</a>
-                      //</div>";
-//echo " </td></tr>";
+echo " <tr class='mailbox-attachments clearfix' widdth='100px'><td><a target='_blank' href='uploads/$showimage1[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage1[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
+echo "<div class='mailbox-attachment-info'>
+                        <a target='_blank' href='uploads/$showimage1[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ &nbsp;$showimage1[0]&nbsp;$showimage1[1]</a>
+                      </div>";
+echo " </td>";
+
+
+
 
 
 }
@@ -1136,17 +1041,34 @@ else
 {
 	//echo "No attachments found";
 }
-
+}
+$dbh->connection=null;
+?></tr></tabel>
+<!--<div class="">
+<ul class='mailbox-attachments clearfix'>
+<?php
+include('dbcon.php');
+//<!--$stmt2 = $dbh->prepare('SELECT ClaimReceipt,ExCategory,ClaimDate FROM tbluserexpenses WHERE UserName=? ORDER BY ClaimDate,ClaimRowid,Currency');-->
+$stmt = $dbh->prepare("CALL sp_DCategorySort(?,?)");
+$stmt->execute(array($User,$C));
+while($showimage = $stmt->fetch())
+{
+if($showimage[5] != null)
+{
+	echo "<li><a target='_blank' href='uploads/$showimage[5]'><span class='mailbox-attachment-icon has-img'><img src='uploads/$showimage[5]' alt='Attachment' title='Click to enlarge'/></span></a>";
+echo "<div class='mailbox-attachment-info'>
+                        <a target='_blank' href='uploads/$showimage[5]' class='mailbox-attachment-name'><i class='fa fa-camera'></i>&nbsp;&nbsp;&nbsp;$ &nbsp;$showimage[0]&nbsp;$showimage[1]</a>
+                      </div>";
+echo " </li>";
+}
+else
+{
+	//echo "No attachments found";
+}
 }
 $dbh->connection=null;
 ?>
-
-</tabel>
-
-
-
-
-
+</ul><!--</div>-->
               </div><!-- /.box -->
               <!-- general form elements disabled -->
               
@@ -1163,9 +1085,10 @@ $dbh->connection=null;
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-         ©2015 All rights reserved | <a href="http://xpensy.com/index.php">Xpensy</a>
+          Anything you want
         </div>
         <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -1246,11 +1169,4 @@ $dbh->connection=null;
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
-<script>
-$( document ).ready(function() {
-    setTimeout(function(){ 
-alert("Due to inactivity you have been logged out");
-location.href="EndSession.php" }, 3600000);
-  });
-</script>
 </html>
